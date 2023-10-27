@@ -75,7 +75,8 @@
 
                   //execute 
                   $pstmt->execute();
-
+                  $result = $pstmt->get_result();
+                
              
                 $con->close();
 
@@ -90,7 +91,7 @@
         public function deleteTransaction($transID){
             $con = null;
             $pstmt = null;
-            $sql = "DELETE FROM Tranactions WHERE TransID =?";
+            $sql = "DELETE FROM Transactions WHERE TransID =?";
             
             try{
                  //establish connection
@@ -146,6 +147,44 @@
                  $con->close();
  
                  return true;
+
+            }catch(Exception $e){
+                echo "Database Connection Failed In the getAllItemDatabase from Consumer class!";
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
+        public function getTransBetweenDates($beginDate,$endDate){
+            $trans = array();
+            $con = null; 
+            $pstmt = null; 
+            $sql = "SELECT * FROM Transactions WHERE Date BETWEEN ? AND ?"; 
+
+            try{
+                
+                //establish connection
+                $con = new mysqli("localhost", $this->user,$this->password,"Testing");
+                // prepare statement
+                $pstmt = $con->prepare($sql);
+                $pstmt->bind_param("ss",$beginDate,$endDate);
+                //execute
+                $pstmt->execute();
+                $result = $pstmt->get_result();
+                if($result != null){
+                    $i = 0;
+                    while($row = $result->fetch_assoc()){
+                        $csTrans = new Transactions();
+                        $csTrans->setTransID($row['TransID']);
+                        $csTrans->setCredit($row['Credit']);
+                        $csTrans->setDate($row['Date']);
+                        $csTrans->setBalance($row['Balance']);                      
+                        $trans[$i] = $csTrans;
+                        $i++;
+                    }
+
+                  }
+                $con->close();
 
             }catch(Exception $e){
                 echo "Database Connection Failed In the getAllItemDatabase from Consumer class!";
