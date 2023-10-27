@@ -1,5 +1,5 @@
 <?php
-
+require('/srv/www/htdocs/php/edu/uafs/Model/NonCustomOrderDetails.php');
     class NonCustomOrderDetailsDAO{
 
        private $userName = "admin"; 
@@ -52,6 +52,50 @@
                 return null;
             }
 
+        }
+
+        public function getNonCustomOrdersBasedOnOrderID($orderID){
+            
+            $allOrders = array();
+            $pstmt = null;
+            $con = null;
+            $sql = "SELECT * FROM non_custom_order_details WHERE OrderID=?";
+
+            try{
+                //establish connection
+                $con = new mysqli("localhost",$this->userName,$this->password,"Testing");
+                
+                //prepare statement
+                $pstmt = $con->prepare($sql);
+                $pstmt->bind_param("i", $orderID);
+
+                //execute query
+                $pstmt->execute();
+
+                //resultSet
+                $result = $pstmt->get_result();
+
+                if($result != null){
+                    $i = 0;
+                    while($row = $result->fetch_assoc()){
+                        $order = new NonCustomOrderDetails();
+                        $order->setOrderDetailID ($row["id"]);
+                        $order->setItemID ($row["ItemID"]);
+                        $order->setOrderDescription ($row["OrderDescription"]);
+                        $order->setOrderID ($row["orderID"]);
+                        $allOrders[$i]= $order;
+                        $i++;
+                    }
+                }
+
+                $con->close();
+                return $allOrders;
+
+            }catch(Exception $e){
+                echo "Database Connection Failed In the getAllItemDatabase from Consumer class!";
+                echo $e->getMessage();
+                return null;
+            }
         }
 
         public function addNonCustomOrderDetails($ItemID,$orderDescription,$orderID){

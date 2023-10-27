@@ -49,7 +49,9 @@
 
 
             }catch(Exception $e){
-
+                echo "Database Connection Failed In the getAllItemDatabase from Consumer class!";
+                echo $e->getMessage();
+                return false;
             }
             
 
