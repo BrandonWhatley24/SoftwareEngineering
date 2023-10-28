@@ -7,7 +7,6 @@
     font-family: 'Poppins,sans-serif';
 }
 body{
-    /* background: #522E24; */
     background: #fff;
 }
 
@@ -85,6 +84,7 @@ body{
     margin-bottom: 15px;
 }
 
+/* Footer CSS */
 
 .footer {
     position: absolute;
