@@ -60,27 +60,20 @@
     <main>
 
     <?php
-        require("/srv/www/htdocs/php/edu/uafs/Control/OrdersDAO.php");
-
-        $res = new OrdersDAO();
-        $allOrders = $res->getAllItemFromDatabase(1);
-
-        for($i = 0; $i < count($allOrders);$i++){
-            echo $allOrders[$i]->getStatus(). "\n"; 
-        }
+   
     ?>
      
         <div class="container-lg">
             <table class="table table-hover">
                 <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Description</th>
-                    <th scope="col"></th>
-                </tr>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Description</th>
+                            <th scope="col"></th>
+                        </tr>
                 </thead>
                 <tbody>
                 <tr>
@@ -146,42 +139,41 @@
     </main>
 
    
-      <!-- Footer -->
 <!-- Footer -->
-<footer class="bg-dark text-center text-white ">
-  <!-- Grid container -->
-  <div class="container p-4">
-    <!-- Section: Social media -->
-    <section class="mb-4">
+<footer class="bg-dark text-center text-white " >
+                <!-- Grid container -->
+                <div class="container p-1" >
+                    <!-- Section: Social media -->
+                    <section class="mb-1" >
 
-      <!-- Twitter -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i class="bi bi-twitter"></i>
-      </a>
+                    <!-- Twitter -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                        ><i class="bi bi-twitter"></i>
+                    </a>
 
-      <!-- facebook -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i class="bi bi-facebook"></i></a>
+                    <!-- facebook -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                        ><i class="bi bi-facebook"></i></a>
 
-      <!-- Instagram -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i class="bi bi-instagram"></i></a>
+                    <!-- Instagram -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                        ><i class="bi bi-instagram"></i></a>
 
-      <!-- Linkedin -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i class="bi bi-linkedin"></i></a>
+                    <!-- Linkedin -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                        ><i class="bi bi-linkedin"></i></a>
 
-      <!-- Github -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i class="bi bi-github"></i></a>
-    </section>
+                    <!-- Github -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                        ><i class="bi bi-github"></i></a>
+                    </section>
 
-  <!-- Copyright -->
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    © 2020 Copyright:
-    <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-  </div>
-  <!-- Copyright -->
+                <!-- Copyright -->
+                <div class="text-center " style="background-color: rgba(0, 0, 0, 0.2);">
+                    © 2020 Copyright:
+                    <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+                </div>
+                <!-- Copyright -->
 </footer>
 <!-- Footer -->
 
