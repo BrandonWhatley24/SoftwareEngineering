@@ -1,7 +1,9 @@
-<!----------------------------------
-
-
------------------------------------>
+<!------------------------------------------
+Team:       SE Team 2
+Homework:   SE Project 3
+Due Date:   November 3rd, 2023
+Class:      CS 4003 - Software Engineering
+------------------------------------------->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="scripts/bootstrap.js"></script>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap.css"> 
     <title>Timeless Borders Main Page</title>
 </head>
 <body>
@@ -37,17 +39,30 @@
               <li class="nav-item">
                 <a class="nav-link" href="#" style="color: white;">About Us</a>
               </li>
-              <div class="searchBar">
-                <input type="text" name="searchBar" id="searchBar" placeholder="Search.." width=20>
-              </div>
+              <!--Form tag for the search bar-->
+              <form action="scripts/file.php" method="POST">
+                <div class="searchBar">
+                  <input type="text" name="searchBar" id="searchBar" placeholder="Search.." width=20>
+                </div>
+              </form>
+              <!--End of form tag for search bar-->
             </ul>
           </div>
+          <!--Form tag for the Profil bar-->
+          <form action="scripts/file.php" method="POST">
           <div>
             <div class="collapse navbar-collapse headerFont" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <img src="images/profileIcon.jpg" width="50" height="40">
                 <li class="nav-item h">
-                  <a class="nav-link headerFont" href="#" style="color: white;">Profile</a>
+                  <div class="dropdown">
+                    <button class="dropbtn">Profile</button>
+                    <div class="dropdown-content">
+                      <a href="#">Profile</a>
+                      <a href="horderHistory.html">Order History</a>
+                      <a href="login.html">Logout</a>
+                    </div>
+                  </div>
                 </li>
                 <img src="images/cart.jpg" width="50" height="40" href="#">
                 <li class="nav-item h">
@@ -59,6 +74,7 @@
               </ul>
             </div>
           </div>
+          </form>
         </div>
           </nav>
           <div class="subHeader">
@@ -92,6 +108,8 @@
              This is the form action -->
         <form action="scripts/file.php" method="POST">
           <div class="bodyContainer">
+            <!-- Most likely won't have a filter section as we don't know how to make a filter section work
+            Start of filter Section
             <div class="filterSection">
               <h3>Filter By</h3>
               <div class="col-md-3">
@@ -109,9 +127,9 @@
               <div class="col-md-3">  
                 <button class="btn" onclick="filterSelection('Size')">Size</button>
               </div>
-              
-              
             </div>
+            End of filter Section
+            -->
             <div class="saleContainer">
               <div class="bodyHeader">
                 <!-- Will display the frame type here -->
@@ -121,18 +139,21 @@
               </div>
             <!-- Start of 1st row container-->
             <div class="row">
+                <!-- Start of 1st item -->
                 <div class="col-md-3">
                   <div class="card">
                     <div class="imageScale">
-                       <img  src="images/goldFrame.jpg" class="card-img-top" alt="Product 1">
+                      <img  src="images/goldFrame.jpg" class="card-img-top" alt="Product 1">
                     </div> 
-                      <div class="card-body">
-                           <h5 class="card-title">Golden Frame</h5>
-                           <p class="card-text">This Golden Frame </p>
-                           <button type="submit" id="addToCartButton" name="addToCartButton" >Add to cart</button>
-                      </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Golden Frame</h5>
+                        <p class="card-text">This Golden Frame </p>
+                        <button type="submit" id="addToCartButton" name="addToCartButton" formaction="buyItem.html">Add to cart</button>
+                    </div>
                   </div>
                 </div>
+                <!-- End of 1st item -->
+                <!-- Start of 2nd item -->
                 <div class="col-md-3">
                     <div class="card">
                       <div class="imageScale">
@@ -141,27 +162,30 @@
                         <div class="card-body">
                             <h5 class="card-title">Wooden Frame</h5>
                             <p class="card-text">This is a Wooden Frame.</p>
-                            <button id="buyButton" name="buyButton">Add to cart</button>
+                            <button type="submit" id="buyButton" name="buyButton" formaction="buyItem.html">Add to cart</button>
                         </div>
                     </div>
                 </div>
-        
+                <!-- End of 2nd item -->
+                <!-- Start of 3rd item -->
                 <div class="col-md-3">
                     <div class="card">
                       <div class="imageScale">
-                        <img src="images/blackFrame.avif" class="card-img-top" alt="Product 3">
+                        <img src="images/blackFrame.avif" class="card-img-top" alt="Product 3" href="buyItem.html">
                       </div>
                         <div class="card-body">
                             <h5 class="card-title">Black Frame</h5>
                             <p class="card-text">This is a wooden Frame with black borders.</p>
-                            <button id="buyButton" name="buyButton" >Add to cart</button>
+                            <button type="submit" id="buyButton" name="buyButton" formaction="buyItem.html">Add to cart</button>
                         </div>
                     </div>
               </div>
+              <!-- End of 3rd item -->
             </div>
           <!--End of 1st row container-->
           <!-- Start of 2nd row container-->
           <div class="row">
+            <!--Start of 4th item -->
             <div class="col-md-3">
               <div class="card">
                 <div class="imageScale">
@@ -170,10 +194,12 @@
                   <div class="card-body">
                        <h5 class="card-title">Red Wood Frame</h5>
                        <p class="card-text">This is a Red Frame. </p>
-                       <button id="buyButton" name="buyButton" >Add to cart</button>
+                       <button type="submit" id="buyButton" name="buyButton" formaction="buyItem.html">Add to cart</button>
                   </div>
               </div>
             </div>
+            <!-- End of 4th item -->
+            <!--Start of 5th item -->
               <div class="col-md-3">
                   <div class="card">
                     <div class="imageScale">
@@ -182,10 +208,12 @@
                       <div class="card-body">
                           <h5 class="card-title">Wooden Frame</h5>
                           <p class="card-text">This is a Wooden Frame</p>
-                          <button id="buyButton" name="buyButton" >Add to cart</button>
+                          <button type="submit" id="buyButton" name="buyButton" formaction="buyItem.html">Add to cart</button>
                       </div>
                   </div>
               </div>
+              <!-- End of 5th item -->
+              <!--Start of 6th item -->
                 <div class="col-md-3">
                     <div class="card">
                       <div class="imageScale">
@@ -194,20 +222,25 @@
                         <div class="card-body">
                             <h5 class="card-title">Black Frame</h5>
                             <p class="card-text">This is a wooden Frame with black borders.</p>
-                            <button id="buyButton" name="buyButton" >Add to cart</button>
+                            <button type="submit" id="buyButton" name="buyButton" formaction="buyItem.html">Add to cart</button>
                         </div>
                     </div>
                 </div>
+                <!-- End of 6th item -->
               </div>
               <!--End of 2nd row container-->
             </div>
+            <!--End of Sale container-->
           </div>
+          <!--End of body container-->
         </form>
+        <!--End of Form tag for items on sale-->
     </body>
     <!--The footer section includes the footer with info about the company and our socials etc.-->
     <footer>
       <div class="footer">
         <div class="footcontainer">
+          <!-- This commented out section had 4 columns that listed the services and about us page, but we may not do that.
           <div class="row">
             <div class="col-md-3">
               <h4>About Us</h4>
@@ -233,6 +266,7 @@
                 <li><a href="#">FAQ</a></li>
               </ul>
             </div>
+          -->
             <div class="footer" style="margin-top:10px;">Limitless Borders Inc.&copy;2023 &ensp; Powered by our AI Overlords.</div>
           </div>
         </div>
