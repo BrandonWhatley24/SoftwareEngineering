@@ -7,31 +7,37 @@ Class:      CS 4003 - Software Engineering
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="scripts/bootstrap.js"></script>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/bootstrap.css"> 
-    <title>Timeless Borders Main Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--<script src="scripts/bootstrap.js"></script> -->
+  <script src="../FrontEnd Homepage/HomeFrontFunctions.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <title>Timeless Borders Main Page</title>
 </head>
+
 <body>
-    <Header>
-      <!-- The header section is the navbar.-->
-      <div class="header">
-        <nav class="navbar navbar-expand-lg">
-          &nbsp;&nbsp;
+  <Header>
+    <!-- The header section is the navbar.-->
+    <div class="header">
+      <nav class="navbar navbar-expand-lg">
+        &nbsp;&nbsp;
         <div class="container-fluid header">
           <img src="images/iconhc.png" class="img-fluid logo" alt="Responsive image">
-            <h3 class="navbar-brand titleFont" style="color: white;">Timeless Borders</h3>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
+          <h3 class="navbar-brand titleFont" style="color: white;">Timeless Borders</h3>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <!--class navbar-nav formats the Home -->
             <ul class="navbar-nav">
               <li class="nav-item active">
-                <a class="nav-link" href="HomeFront.html" style="color: white;">Home<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="HomeFront.html" style="color: white;">Home<span
+                    class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#" style="color: white;">Services</a>
@@ -50,65 +56,69 @@ Class:      CS 4003 - Software Engineering
           </div>
           <!--Form tag for the Profil bar-->
           <form action="scripts/file.php" method="POST">
-          <div>
-            <div class="collapse navbar-collapse headerFont" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <img src="images/profileIcon.jpg" width="50" height="40">
-                <li class="nav-item h">
-                  <div class="dropdown">
-                    <button class="dropbtn">Profile</button>
-                    <div class="dropdown-content">
-                      <a href="#">Profile</a>
-                      <a href="horderHistory.html">Order History</a>
-                      <a href="login.html">Logout</a>
+            <div>
+              <div class="collapse navbar-collapse headerFont" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <img src="images/profileIcon.jpg" width="50" height="40">
+                  <li class="nav-item h">
+                    <div class="dropdown">
+                      <button class="dropbtn">Profile</button>
+                      <div class="dropdown-content">
+                        <a href="#">Profile</a>
+                        <a href="horderHistory.html">Order History</a>
+                        <a href="login.html">Logout</a>
+                      </div>
                     </div>
-                  </div>
-                </li>
-                <img src="images/cart.jpg" width="50" height="40" href="#">
-                <li class="nav-item h">
-                  <a class="nav-link headerFont" href="checkout.html" style="color: white;">Checkout</a>
-                </li>
-                <li class="nav-item h">
-                  <a class="nav-link headerFont" href="login.html" style="color: white;">Logout</a>
-                </li>
-              </ul>
+                  </li>
+                  <img src="images/cart.jpg" width="50" height="40" href="#">
+                  <li class="nav-item h">
+                    <a class="nav-link headerFont" href="checkout.html" style="color: white;">Checkout</a>
+                  </li>
+                  <li class="nav-item h">
+                    <a class="nav-link headerFont" href="login.html" style="color: white;">Logout</a>
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
           </form>
         </div>
-          </nav>
-          <div class="subHeader">
-            <div class="row">
-              <div class="col-md-2">
-                <h4>Customer Address</h4>
-              </div>
-              <div class="col-md-1" style="margin-left: 40%;">
-                <a class="nav-link headerFont" href="category1.html" style="color: white; font-size: 20;">Standard Frames</a>
-              </div>
-              <div class="col-md-1">
-                <a class="nav-link headerFont" href="category2.html" style="color: white; font-size: 20;">Gallery Frames</a>
-              </div>
-              <div class="col-md-1">
-                <a class="nav-link headerFont" href="category3.html" style="color: white; font-size: 20;">Decorative Frames</a>
-              </div>
-              <div class="col-md-1">
-                <a class="nav-link headerFont" href="category4.html" style="color: white; font-size: 20;">Floating Frames</a>
-              </div>
-            </div>
+      </nav>
+      <div class="subHeader">
+        <div class="row">
+          <div class="col-md-2">
+            <h4>Customer Address</h4>
           </div>
+          <div class="col-md-1" style="margin-left: 40%;">
+            <a class="nav-link headerFont" href="category1.html" style="color: white; font-size: 20;">Standard
+              Frames</a>
+          </div>
+          <div class="col-md-1">
+            <a class="nav-link headerFont" href="category2.html" style="color: white; font-size: 20;">Gallery Frames</a>
+          </div>
+          <div class="col-md-1">
+            <a class="nav-link headerFont" href="category3.html" style="color: white; font-size: 20;">Decorative
+              Frames</a>
+          </div>
+          <div class="col-md-1">
+            <a class="nav-link headerFont" href="category4.html" style="color: white; font-size: 20;">Floating
+              Frames</a>
+          </div>
+        </div>
       </div>
-              <!-- NAVBAR END -->
-      
-              <div>
-              &nbsp;
-              </div>
-    </Header>
-    <body>
-        <!-- Will Have to change filename here in form action
+    </div>
+    <!-- NAVBAR END -->
+
+    <div>
+      &nbsp;
+    </div>
+  </Header>
+
+  <body onload="pageStartup()">
+    <!-- Will Have to change filename here in form action
              This is the form action -->
-        <form action="scripts/file.php" method="POST">
-          <div class="bodyContainer">
-            <!-- Most likely won't have a filter section as we don't know how to make a filter section work
+    <form action="scripts/file.php" method="POST">
+      <div class="bodyContainer">
+        <!-- Most likely won't have a filter section as we don't know how to make a filter section work
             Start of filter Section
             <div class="filterSection">
               <h3>Filter By</h3>
@@ -130,117 +140,28 @@ Class:      CS 4003 - Software Engineering
             </div>
             End of filter Section
             -->
-            <div class="saleContainer">
-              <div class="bodyHeader">
-                <!-- Will display the frame type here -->
-                <div class="col-md-3" style="margin-left:40%; margin-top:-50px;">
-                  <h3>Frame Type</h3>
-                </div>
-              </div>
-            <!-- Start of 1st row container-->
-            <div class="row">
-                <!-- Start of 1st item -->
-                <div class="col-md-3">
-                  <div class="card">
-                    <div class="imageScale">
-                      <img  src="images/goldFrame.jpg" class="card-img-top" alt="Product 1">
-                    </div> 
-                    <div class="card-body">
-                        <h5 class="card-title">Golden Frame</h5>
-                        <p class="card-text">This Golden Frame </p>
-                        <button type="submit" id="addToCartButton" name="addToCartButton" formaction="buyItem.html">Add to cart</button>
-                    </div>
-                  </div>
-                </div>
-                <!-- End of 1st item -->
-                <!-- Start of 2nd item -->
-                <div class="col-md-3">
-                    <div class="card">
-                      <div class="imageScale">
-                        <img src="images/woodenFrame.jpg" class="card-img-top" alt="Product 2">
-                      </div> 
-                        <div class="card-body">
-                            <h5 class="card-title">Wooden Frame</h5>
-                            <p class="card-text">This is a Wooden Frame.</p>
-                            <button type="submit" id="buyButton" name="buyButton" formaction="buyItem.html">Add to cart</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- End of 2nd item -->
-                <!-- Start of 3rd item -->
-                <div class="col-md-3">
-                    <div class="card">
-                      <div class="imageScale">
-                        <img src="images/blackFrame.avif" class="card-img-top" alt="Product 3" href="buyItem.html">
-                      </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Black Frame</h5>
-                            <p class="card-text">This is a wooden Frame with black borders.</p>
-                            <button type="submit" id="buyButton" name="buyButton" formaction="buyItem.html">Add to cart</button>
-                        </div>
-                    </div>
-              </div>
-              <!-- End of 3rd item -->
+        <div class="saleContainer">
+          <div class="bodyHeader">
+            <!-- Will display the frame type here -->
+            <div class="col-md-3" style="margin-left:40%; margin-top:-50px;">
+              <h3>Frame Type</h3>
             </div>
-          <!--End of 1st row container-->
-          <!-- Start of 2nd row container-->
-          <div class="row">
-            <!--Start of 4th item -->
-            <div class="col-md-3">
-              <div class="card">
-                <div class="imageScale">
-                  <img src="images/redFrame.jpg" width="250" height="300">
-                </div> 
-                  <div class="card-body">
-                       <h5 class="card-title">Red Wood Frame</h5>
-                       <p class="card-text">This is a Red Frame. </p>
-                       <button type="submit" id="buyButton" name="buyButton" formaction="buyItem.html">Add to cart</button>
-                  </div>
-              </div>
-            </div>
-            <!-- End of 4th item -->
-            <!--Start of 5th item -->
-              <div class="col-md-3">
-                  <div class="card">
-                    <div class="imageScale">
-                      <img src="images/woodenFrame.jpg" class="card-img-top" alt="Product 2">
-                    </div> 
-                      <div class="card-body">
-                          <h5 class="card-title">Wooden Frame</h5>
-                          <p class="card-text">This is a Wooden Frame</p>
-                          <button type="submit" id="buyButton" name="buyButton" formaction="buyItem.html">Add to cart</button>
-                      </div>
-                  </div>
-              </div>
-              <!-- End of 5th item -->
-              <!--Start of 6th item -->
-                <div class="col-md-3">
-                    <div class="card">
-                      <div class="imageScale">
-                        <img src="images/blackFrame.avif" class="card-img-top" alt="Product 3">
-                      </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Black Frame</h5>
-                            <p class="card-text">This is a wooden Frame with black borders.</p>
-                            <button type="submit" id="buyButton" name="buyButton" formaction="buyItem.html">Add to cart</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- End of 6th item -->
-              </div>
-              <!--End of 2nd row container-->
-            </div>
-            <!--End of Sale container-->
           </div>
-          <!--End of body container-->
-        </form>
-        <!--End of Form tag for items on sale-->
-    </body>
-    <!--The footer section includes the footer with info about the company and our socials etc.-->
-    <footer>
-      <div class="footer">
-        <div class="footcontainer">
-          <!-- This commented out section had 4 columns that listed the services and about us page, but we may not do that.
+          <!-- Start of the dynmaic table-->
+          <!--The table is populated in the pageStartup function-->
+          <div id="itemsTable"></div>
+        </div>
+        <!--End of Sale container-->
+      </div>
+      <!--End of body container-->
+    </form>
+    <!--End of Form tag for items on sale-->
+  </body>
+  <!--The footer section includes the footer with info about the company and our socials etc.-->
+  <footer>
+    <div class="footer">
+      <div class="footcontainer">
+        <!-- This commented out section had 4 columns that listed the services and about us page, but we may not do that.
           <div class="row">
             <div class="col-md-3">
               <h4>About Us</h4>
@@ -267,11 +188,13 @@ Class:      CS 4003 - Software Engineering
               </ul>
             </div>
           -->
-            <div class="footer" style="margin-top:10px;">Limitless Borders Inc.&copy;2023 &ensp; Powered by our AI Overlords.</div>
-          </div>
-        </div>
+        <div class="footer" style="margin-top:10px;">Limitless Borders Inc.&copy;2023 &ensp; Powered by our AI
+          Overlords.</div>
       </div>
-    </footer>
-    <!-- End of footer section-->
+    </div>
+    </div>
+  </footer>
+  <!-- End of footer section-->
 </body>
+
 </html>
