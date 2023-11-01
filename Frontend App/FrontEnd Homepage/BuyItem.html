@@ -10,6 +10,7 @@ Class:      CS 4003 - Software Engineering
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../FrontEnd Homepage/HomeFrontFunctions.js"></script>
     <link rel="stylesheet" href="css/HomeFrontStyle.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <title>Buy Item Page</title>
@@ -96,77 +97,12 @@ Class:      CS 4003 - Software Engineering
               </div>
           </div>
     </Header>
-    <body>
+    <body onload="getBuyPageHTML()">
         <!--Start of form action-->
-        <form action="scripts/file.php" method="POST">
+        <!--<form action="scripts/file.php" method="POST">-->
         
-            <div class="imageScale2">
-                <img src="images/woodenFrame.jpg" class="card-img-top" alt="Product 2" height="350">
-            </div>
-            <div class="itemDesc">
-                <h3>Description</h3> <br>
-                <p>This is a standard picture frame. </p>
-                <p>Default measurement: 16x24</p>
-                <p>Default color: Brown</p>
-                <p>Default material: Wood</p>
-            </div>
-            <div class="itemBodyContainer">
-                <div class="itemBodyHeader">
-                    <h2>Picture Frame</h2>
-                    <br>
-                </div>
-                <label for="material">Material Type:</label>
-                <div class="itemInput">
-                    <select name="material" id="color" name="material">
-                        <option value="gold">Gold</option>
-                        <option value="wood">Wood</option>
-                        <option value="aluminum">Aluminum</option>
-                        <option value=" polystyrene">Polystyrene</option>
-                      </select>
-                </div>
-                <div class="customItemInput">
-                    Leave requested material here if preferred:<br>
-                    <input type="text" id="materialCustom" name="materialCustom">
-                </div>
-                <br>
-                <label for="size">Frame Size:</label>
-                <div class="itemInput">
-                    <input type="number" id="height" name="width" value="1" min="1">
-                      x
-                    <input type="number" id="width" name="width" value="1" min="1">
-                </div>
-                <br>
-                <label for="color">Frame Color:</label>
-                <div class="itemInput">
-                    <select name="color" id="color" name="color">
-                        <option value="red">Red</option>
-                        <option value="goldMatte">Gold Matte</option>
-                        <option value="black">Black</option>
-                        <option value="blue">Blue</option>
-                      </select>
-                </div>
-                <div class="customItemInput">
-                    Leave requested color here if preferred color isn't found:<br>
-                    <input type="text" id="materialCustom" name="materialCustom">
-                </div>
-                <br>
-                <label for="customization">Customization (Leave any specific instructions here):</label>
-                <div class="itemInput">
-                    <textarea name="custom" id="custom">Enter customization here...</textarea>
-                </div>
-                <br>   
-                <label for="quantity">Quantity:</label>
-                <input type="number" id="quantity" name="quantity" value="1" min="1">
-                <br><br>
-                <input type="submit" value="Add to Cart">
-                <br>
-                <br>
-                <div class="displayTotal">
-                    <h3>Total:</h3>
-                    <h4>$25.00</h4>
-                </div>
-            </div>
-        </form>
+          <div id="itemInformation"></div>
+        <!-- </form> -->
     </body>
     <footer>
         <div class="footer">
