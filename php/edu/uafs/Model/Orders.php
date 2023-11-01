@@ -1,13 +1,13 @@
 <?php
 class Orders{
-    private $orderID;
-    private $status;
-    private $amount;
-    private $date;
+    public $orderID;
+    public $status;
+    public  $amount;
+    public $date;
     
-    private $custID;
-    private $isCustomOrder;
-    private $transID;
+    public $custID;
+    public $isCustomOrder;
+    public $transID;
 
     public function getCustID() {
         return $this->custID;

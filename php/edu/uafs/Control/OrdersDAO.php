@@ -95,7 +95,7 @@ class OrdersDAO {
 
         $con = null;
         $pstmt = null;
-        $sql = "UPDATE orders SET CustID=?,IsCustomOrder=?,Amount=?,OrderDate=?,TransID=?,OrderStatus=? WHERE(OrderID=?)";
+        $sql = "UPDATE ConsumerOrders SET CustID=?,IsCustomOrder=?,Amount=?,OrderDate=?,TransID=?,OrderStatus=? WHERE(OrderID=?)";
 
         try{    
             //establish a connection

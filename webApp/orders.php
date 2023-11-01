@@ -7,14 +7,22 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-   
+    <script src="js/script.js"></script>
 </head>
     <title>orders</title>
 </head>
 <body>
 
     <header>
+   
         
+    <?php
+                require("/srv/www/htdocs/php/edu/uafs/Control/OrdersDAO.php");
+               $ord = new OrdersDAO();
+               $res =  $ord->getAllItemFromDatabase(); 
+             echo $res[1]->getDate(); 
+            ?>
+            
         <nav class="navbar" data-bs-theme="dark">
                 
                 <h2 style="color: white; font-family: anton;"><a id="logoLink" href="/">TB Borders</a></h2>
@@ -59,13 +67,11 @@
 
     <main>
 
-    <?php
-   
-    ?>
-     
+    <div id="output"></div>
         <div class="container-lg">
             <table class="table table-hover">
                 <thead>
+                    <!--
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Date</th>
@@ -135,7 +141,10 @@
             
                 </tbody>
             </table>
+-->
             </div>
+
+          
     </main>
 
    
