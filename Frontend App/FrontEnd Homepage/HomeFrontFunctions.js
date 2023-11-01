@@ -103,6 +103,7 @@ function setCurrItem(index){
     localStorage["html"] = html;
     localStorage["currItem"] = this.currItem;
 
+    //Change this line to route
     window.location.href = "BuyItem.html";
 }
 
