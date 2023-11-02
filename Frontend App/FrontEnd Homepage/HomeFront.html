@@ -13,8 +13,8 @@ Class:      CS 4003 - Software Engineering
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!--<script src="scripts/bootstrap.js"></script> -->
   <script src="../FrontEnd Homepage/HomeFrontFunctions.js"></script>
-  <link rel="stylesheet" href="css/HomeFrontStyle.css">
-  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="./css/HomeFrontStyle.css">
+  <link rel="stylesheet" href="./css/bootstrap.css">
   <title>Timeless Borders Main Page</title>
 </head>
 
@@ -32,31 +32,31 @@ Class:      CS 4003 - Software Engineering
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <!--class navbar-nav formats the Home -->
-            <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link" href="HomeFront.html" style="color: white;">Home<span
-                    class="sr-only">(current)</span></a>
+          <div class="collapse navbar-collapse headerFont" id="navbarNavDropdown">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item h">
+                <a class="nav-link headerFont" href="HomeFront.html" style="color: white;">Home</a>
               </li>
+              <!-- Commented out About us, Services, & searchbar from the navbar
               <li class="nav-item">
                 <a class="nav-link" href="#" style="color: white;">Services</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#" style="color: white;">About Us</a>
               </li>
-              <!--Form tag for the search bar-->
+              -
+              Form tag for the search bar
               <form action="scripts/file.php" method="POST">
                 <div class="searchBar">
                   <input type="text" name="searchBar" id="searchBar" placeholder="Search.." width=20>
                 </div>
               </form>
-              <!--End of form tag for search bar-->
+              End of form tag for search bar
+            -->
             </ul>
           </div>
-          <!--Form tag for the Profil bar-->
+          <!--Form tag for the Profile bar-->
           <form action="scripts/file.php" method="POST">
-            <div>
               <div class="collapse navbar-collapse headerFont" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <img src="images/profileIcon.jpg" width="50" height="40">
@@ -64,30 +64,29 @@ Class:      CS 4003 - Software Engineering
                     <div class="dropdown">
                       <button class="dropbtn">Profile</button>
                       <div class="dropdown-content">
-                        <a href="#">Profile</a>
-                        <a href="horderHistory.html">Order History</a>
-                        <a href="login.html">Logout</a>
+                        <a href="./orders.php">Order History</a>
+                        <a href="./login.html">Logout</a>
                       </div>
                     </div>
                   </li>
                   <img src="images/cart.jpg" width="50" height="40" href="#">
                   <li class="nav-item h">
-                    <a class="nav-link headerFont" href="checkout.html" style="color: white;">Checkout</a>
+                    <a class="nav-link headerFont" href="checkout.html" style="color:white;">Checkout</a>
                   </li>
                   <li class="nav-item h">
-                    <a class="nav-link headerFont" href="login.html" style="color: white;">Logout</a>
+                    <a class="nav-link headerFont" href="login.html" style="color:white;">Logout</a>
                   </li>
                 </ul>
               </div>
-            </div>
           </form>
         </div>
       </nav>
       <div class="subHeader">
         <div class="row">
           <div class="col-md-2">
-            <h4>Customer Address</h4>
+            <h4 style="color: white;">Customer Address</h4>
           </div>
+          <!-- Commenting out the frame categories
           <div class="col-md-1" style="margin-left: 40%;">
             <a class="nav-link headerFont" href="category1.html" style="color: white; font-size: 20;">Standard
               Frames</a>
@@ -103,6 +102,7 @@ Class:      CS 4003 - Software Engineering
             <a class="nav-link headerFont" href="category4.html" style="color: white; font-size: 20;">Floating
               Frames</a>
           </div>
+        -->
         </div>
       </div>
     </div>
@@ -183,10 +183,8 @@ Class:      CS 4003 - Software Engineering
               </ul>
             </div>
           -->
-        <div class="footer" style="margin-top:10px;">Limitless Borders Inc.&copy;2023 &ensp; Powered by our AI
-          Overlords.</div>
+        <div class="footer">Limitless Borders Inc.&copy;2023 &ensp; Powered by our AI Overlords.</div>
       </div>
-    </div>
     </div>
   </footer>
   <!-- End of footer section-->
