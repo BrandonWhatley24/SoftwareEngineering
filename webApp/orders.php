@@ -1,4 +1,6 @@
-
+<?php 
+    session_start(); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <script src="js/script.js"></script>
+   
 </head>
     <title>orders</title>
 </head>
@@ -16,35 +18,33 @@
     <header>
    
         
-    <?php
-                require("/srv/www/htdocs/php/edu/uafs/Control/OrdersDAO.php");
-               $ord = new OrdersDAO();
-               $res =  $ord->getAllItemFromDatabase(); 
-             echo $res[1]->getDate(); 
-            ?>
+    
             
         <nav class="navbar" data-bs-theme="dark">
                 
                 <h2 style="color: white; font-family: anton;"><a id="logoLink" href="/">TB Borders</a></h2>
-                <form class="form-inline my-2 my-lg-0" style="margin-left: 5%;">
+                <form class="form-inline my-2 my-lg-0" style="margin-left: 5%;" action="./orderDetail.php" method="GET">
                     <div class="container ">
+
+                    
                         <div class="row">
+                      
                                 <div class="col-9">
-                                    <input id="searchBar" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                    <input name="searchID" id="searchBar" class="form-control mr-sm-2" required type="text" placeholder="Search by ID" aria-label="Search">
                                 </div>
-                                <div class="col" >
-                                        <button id="searchBtn" class="btn btn-primary" type="submit">
-                                            <i class="bi bi-search"></i>
-                                        </button>
+                                <div class="col">
+                                    <button type="submit" id="searchBtn" class="btn btn-primary">
+                                        <i class="bi bi-search"></i>
+                                    </button>
                                 </div>
-                            
+                         
                         </div>
                     </div>
                 </form>
                 <ul class="nav" >
                     
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#" style="color: white;">
+                        <a class="nav-link active" aria-current="page" href="./orders.php" style="color: white;">
                             <i class="bi bi-card-list"></i>
                         </a>
 
@@ -67,84 +67,46 @@
 
     <main>
 
-    <div id="output"></div>
+    
         <div class="container-lg">
             <table class="table table-hover">
+           
                 <thead>
-                    <!--
+                  
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Date</th>
                             <th scope="col">Status</th>
                             <th scope="col">Amount</th>
-                            <th scope="col">Description</th>
-                            <th scope="col"></th>
+                           
                         </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Always specify both the height <br>and width attributes for images</td>
-                    <td><img src="images/wf1.jpeg" alt="pic" width="80" height="80"></td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>Always specify both the height <br>and width attributes for images</td>
-                    <td><img src="images/wf2.jpeg" alt="pic" width="80" height="80"></td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>Always specify both the height <br>and width attributes for images</td>
-                    <td><img src="images/wf2.jpeg" alt="pic" width="80" height="80"></td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>Always specify both the height <br>and width attributes for images</td>
-                    <td><img src="images/wf1.jpeg" alt="pic" width="80" height="80"></td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>Always specify both the height <br>and width attributes for images</td>
-                    <td><img src="images/wf3.jpeg" alt="pic" width="80" height="80"></td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>Always specify both the height <br>and width attributes for images</td>
-                    <td><img src="images/wf3.jpeg" alt="pic" width="80" height="80"></td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>Always specify both the height <br>and width attributes for images</td>
-                    <td><img src="images/wf1.jpeg" alt="pic" width="80" height="80"></td>
-                </tr>
-            
-                </tbody>
+                
+                    <?php
+                    
+                      require("../php/edu/uafs/Control/OrdersDAO.php");
+                      $ord = new OrdersDAO();
+                      $res =  $ord->getAllItemFromDatabase(); 
+                    $i = 0;
+                       while($i < sizeof($res)){
+                    ?>
+                    <tbody>
+                        <td><?php echo $res[$i]->getOrderID()?></td>
+                        <td><?php echo $res[$i]->getDate()?></td>
+                        <td><?php echo $res[$i]->getStatus()?></td>
+                        <td>$<?php echo $res[$i]->getAmount()?></td>
+                        
+                    </tbody>
+                    <?php
+                        $i++; 
+                        }
+                    ?>
+               
             </table>
--->
-            </div>
 
-          
+            </div>
+            
+
     </main>
 
    

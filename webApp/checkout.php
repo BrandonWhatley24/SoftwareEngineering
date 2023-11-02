@@ -9,11 +9,21 @@
     <title>checkout</title>
 </head>
 <body>
+<?php
 
+    require("../php/edu/uafs/Control/itemsDAO.php");
+    // these items are hardcoded for now Need to figure out the session management part for the cart
+    $item1 = new item(1,23.33,"item1","2'","4'");
+    $item2 = new item(2,23.33,"item1","2'","4'");
+    $item3 = new item(3,23.33,"item1","2'","4'");
+
+    $cart = [$item1,$item2,$item3];
+
+?>
     <header>
     <nav class="navbar" data-bs-theme="dark">
                 
-                <h2 style="color: white; font-family: anton;"><a id="logoLink" href="/">TB Borders</a></h2>
+                <h2 style="color: white; font-family: Times New Roman;"><a id="logoLink" href="/">TB Borders</a></h2>
                 <form class="form-inline my-2 my-lg-0" style="margin-left: 5%;">
                     <div class="container ">
                         <div class="row">
@@ -59,33 +69,33 @@
 
             <div class="col-8">
                         <div class="container-sm" style="padding: 5% 35% 5% 15%; ">
-                        <h2>Payment Information</h2>
+                        <h2 style="font-family: 'Times New Roman', Times, serif;">Payment Information</h2>
                                         
-                                            <form style="padding:5%;  border-style: groove; border-color: white; border-width: thick;">
+                                            <form style="padding:5%;  border-style: groove; border-color: white; border-width: thick; border-radius:3%">
 
                                                 
                                                 <div class="form-row">
                                                     <div class="form-group col-md-6">
                                                    
-                                                    <input type="email" class="form-control" id="inputEmail4" placeholder="credit card #">
+                                                    <input type="email" class="form-control" id="inputEmail4" placeholder="credit card #" required>
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                     
-                                                    <input type="password" class="form-control" id="inputPassword4" placeholder="CVC">
+                                                    <input type="password" class="form-control" id="inputPassword4" placeholder="CVC" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="inputAddress">Address</label>
-                                                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                                                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="inputAddress2">Address 2</label>
-                                                    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                                                    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" required>
                                                 </div>
                                                 <div class="form-row">
                                                     <div class="form-group col-md-6">
                                                     <label for="inputCity">City</label>
-                                                    <input type="text" class="form-control" id="inputCity">
+                                                    <input type="text" class="form-control" id="inputCity" required>
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                     <label for="inputState">State</label>
@@ -96,7 +106,7 @@
                                                     </div>
                                                     <div class="form-group col-md-2">
                                                     <label for="inputZip">Zip</label>
-                                                    <input type="text" class="form-control" id="inputZip">
+                                                    <input type="text" class="form-control" id="inputZip" required>
                                                     </div>
                                                 </div>
                                                
@@ -111,8 +121,8 @@
             <div class="col-4">
             
                     <div class="container " style="padding: 8% 15% 5% 0%;">
-                    <h2>Order Summary</h2>
-                                <form action=""  style="padding:0% 5% 20% 5%; border-style: groove; border-color: white; border-width: thick;">     
+                    <h2 style="font-family: 'Times New Roman', Times, serif;">Order Summary</h2>
+                                <form action=""  style="padding:0% 5% 20% 5%; border-style: groove; border-color: white; border-width: thick; border-radius:3%">     
                                
                                         <table class="table " >
                                         
@@ -125,22 +135,28 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td><img src="images/wf1.jpeg" alt="pic" width="40" height="40"></td>
-                                                    <th scope="row">$20</th>
-                                                </tr>
-                                                <tr>
-                                                <th scope="row">2</th>
-                                                    <td><img src="images/wf2.jpeg" alt="pic" width="40" height="40"></td>
-                                                    <th scope="row">$20</th>
-                                                </tr>
-                                                <tr>
-                                                <th scope="row">3</th>
-                                                    <td><img src="images/wf3.jpeg" alt="pic" width="40" height="40"></td>
-                                                    <th scope="row">$20</th>
-                                                </tr>
-                                                
+
+                                                <?php 
+                                                $total = 0;
+                                                $i = 0;
+                                                while ($i < count($cart)) {
+                                                    ?>
+                                                    <tr>
+                                                            <th scope="row"><?php echo $cart[$i]->getId();?></th>
+                                                            <!--need to map images to our set of items-->
+                                                            <td><img src="images/wf1.jpeg" alt="pic" width="40" height="40"></td>
+                                                            <th scope="row"><?php echo $cart[$i]->getitemPrice()?></th>
+                                                    </tr>
+                                                <?php
+                                                $total+= $cart[$i]->getitemPrice();
+                                                $i++;
+                                                } 
+                                                ?>
+                                                    <tr>
+                                                        <th>Total:</th>
+                                                        <td></td>
+                                                        <th><?php echo $total?></th>                                                        </th>
+                                                    </tr>
                                                     
                                                 </tbody>
                                         </table>

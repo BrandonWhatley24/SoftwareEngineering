@@ -1,9 +1,11 @@
 <?php
-require('/srv/www/htdocs/php/edu/uafs/Model/NonCustomOrderDetails.php');
+
     class NonCustomOrderDetailsDAO{
 
-       private $userName = "admin"; 
-       private $password = "mypass1";
+        private $userName = "root";
+        private $password ="Garmon22"; 
+        private $db = "test"; 
+
 
 
         public function getAllNonCustomOrders(){
@@ -16,9 +18,9 @@ require('/srv/www/htdocs/php/edu/uafs/Model/NonCustomOrderDetails.php');
                 ini_set('display_errors', 1);
                 ini_set('display_startup_errors', 1);
                 error_reporting(E_ALL); 
-                
+              
                 //establish connections
-                $con = new mysqli("localhost",$this->userName,$this->password,"Testing");
+                $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
 
                 //prepare statement
                 $pstmt = $con->prepare($sql);
@@ -32,10 +34,10 @@ require('/srv/www/htdocs/php/edu/uafs/Model/NonCustomOrderDetails.php');
                     $i = 0;
                     while($row = $result->fetch_assoc()){
                         $order = new NonCustomOrderDetails();
-                        $order->setOrderDetailID ($row["id"]);
-                        $order->setItemID ($row["ItemID"]);
-                        $order->setOrderDescription ($row["OrderDescription"]);
-                        $order->setOrderID($row["orderID"]);
+                        $order->setOrderDetailID ($row["orderdetailid"]);
+                        $order->setItemID ($row["itemid"]);
+                        $order->setOrderDescription ($row["orderDescription"]);
+                        $order->setOrderID($row["orderid"]);
                         $allNonCustomOrders[$i] = $order;
                         $i++;
                     }
@@ -59,11 +61,11 @@ require('/srv/www/htdocs/php/edu/uafs/Model/NonCustomOrderDetails.php');
             $allOrders = array();
             $pstmt = null;
             $con = null;
-            $sql = "SELECT * FROM non_custom_order_details WHERE OrderID=?";
+            $sql = "SELECT * FROM non_custom_order_details WHERE orderid=?";
 
             try{
                 //establish connection
-                $con = new mysqli("localhost",$this->userName,$this->password,"Testing");
+                $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
                 
                 //prepare statement
                 $pstmt = $con->prepare($sql);
@@ -79,10 +81,10 @@ require('/srv/www/htdocs/php/edu/uafs/Model/NonCustomOrderDetails.php');
                     $i = 0;
                     while($row = $result->fetch_assoc()){
                         $order = new NonCustomOrderDetails();
-                        $order->setOrderDetailID ($row["id"]);
-                        $order->setItemID ($row["ItemID"]);
-                        $order->setOrderDescription ($row["OrderDescription"]);
-                        $order->setOrderID ($row["orderID"]);
+                        $order->setOrderDetailID ($row["orderdetailid"]);
+                        $order->setItemID ($row["itemid"]);
+                        $order->setOrderDescription ($row["orderDescription"]);
+                        $order->setOrderID ($row["orderid"]);
                         $allOrders[$i]= $order;
                         $i++;
                     }
@@ -101,14 +103,14 @@ require('/srv/www/htdocs/php/edu/uafs/Model/NonCustomOrderDetails.php');
         public function addNonCustomOrderDetails($ItemID,$orderDescription,$orderID){
             $con =null;
             $pstmt = null; 
-            $sql = "INSERT INTO non_custom_order_details (ItemID,OrderDescription,OrderID) VALUES(?,?,?)"; 
+            $sql = "INSERT INTO non_custom_Order_details (ItemID,OrderDescription,OrderID) VALUES(?,?,?)"; 
 
             try{
                 ini_set('display_errors', 1);
                 ini_set('display_startup_errors', 1);
                 error_reporting(E_ALL); 
                 //establish connection
-                $con = new mysqli("localhost",$this->userName,$this->password,"Testing");
+                $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
 
                 // prepare statement
                 $pstmt = $con->prepare($sql);
@@ -130,14 +132,14 @@ require('/srv/www/htdocs/php/edu/uafs/Model/NonCustomOrderDetails.php');
         public function editNonCustomOrderDetails($ItemID,$orderDescription,$orderID){
             $con=null;
             $pstmt =null;
-            $sql = "UPDATE non_custom_order_details SET ItemID=?,OrderDescription=? WHERE OrderID=?";
+            $sql = "UPDATE non_custom_Order_details SET ItemID=?,OrderDescription=? WHERE orderID=?";
 
             try{
                 ini_set('display_errors', 1);
                 ini_set('display_startup_errors', 1);
                 error_reporting(E_ALL); 
                 //establish connection
-                $con = new mysqli('localhost',$this->userName,$this->password,'Testing');
+                $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
 
                 //prepare statement
                 $pstmt = $con->prepare($sql);
@@ -157,5 +159,55 @@ require('/srv/www/htdocs/php/edu/uafs/Model/NonCustomOrderDetails.php');
         }
 
     }
+    class NonCustomOrderDetails{
+
+        private $orderDetailID;
+        private $ItemID;
+
+        private $orderDescription;
+
+        private $orderID; 
+
+          // Getter for orderDetailID
+    public function getOrderDetailID() {
+        return $this->orderDetailID;
+    }
+
+    // Setter for orderDetailID
+    public function setOrderDetailID($orderDetailID) {
+        $this->orderDetailID = $orderDetailID;
+    }
+
+    // Getter for ItemID
+    public function getItemID() {
+        return $this->ItemID;
+    }
+
+    // Setter for ItemID
+    public function setItemID($ItemID) {
+        $this->ItemID = $ItemID;
+    }
+
+    // Getter for orderDescription
+    public function getOrderDescription() {
+        return $this->orderDescription;
+    }
+
+    // Setter for orderDescription
+    public function setOrderDescription($orderDescription) {
+        $this->orderDescription = $orderDescription;
+    }
+
+    // Getter for orderID
+    public function getOrderID() {
+        return $this->orderID;
+    }
+
+    // Setter for orderID
+    public function setOrderID($orderID) {
+        $this->orderID = $orderID;
+    }
+    }
+
 
 ?>

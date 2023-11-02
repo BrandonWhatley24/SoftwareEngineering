@@ -1,10 +1,76 @@
 <?php
 
-require('/srv/www/htdocs/php/edu/uafs/Model/Orders.php');
+class Orders{
+    private $orderID;
+    private $status;
+    private $amount;
+    private $date;
+    
+    private $custID;
+    private $isCustomOrder;
+    private $transID;
+
+    public function getCustID() {
+        return $this->custID;
+    }
+
+    public function setCustID($custID) {
+        $this->custID = $custID;
+    }
+
+    public function getIsCustomOrder() {
+        return $this->isCustomOrder;
+    }
+
+    public function setIsCustomOrder($isCustomOrder) {
+        $this->isCustomOrder = $isCustomOrder;
+    }
+
+    public function getTransID() {
+        return $this->transID;
+    }
+    public function setTransID($transID) {
+        $this->transID = $transID;
+    }
+    public function getOrderID() {
+        return $this->orderID;
+    }
+
+    public function setOrderID($orderID) {
+        $this->orderID = $orderID;
+    }
+
+    public function getStatus() {
+        return $this->status;
+    }
+
+    public function setStatus($status) {
+        $this->status = $status;
+    }
+
+    public function getAmount() {
+        return $this->amount;
+    }
+
+    public function setAmount($amount) {
+        $this->amount = $amount;
+    }
+
+    public function getDate() {
+        return $this->date;
+    }
+
+    public function setDate($date) {
+        $this->date = $date;
+    }
+
+
+}
 
 class OrdersDAO {
-    private $user="root";
-    private $password ="Garmon22";
+    private $userName = "root";
+    private $password ="Garmon22"; 
+    private $db = "test";
   
 
    
@@ -24,7 +90,7 @@ class OrdersDAO {
             ini_set('display_startup_errors', 1);
             error_reporting(E_ALL); 
             
-            $con = new mysqli("localhost", $this->user, $this->password, "Testing");
+            $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
             
                 if ($con->connect_error) {
                     die("Connection failed: " . $con->connect_error);
@@ -42,10 +108,10 @@ class OrdersDAO {
                         $csOrd->setOrderID ($row["orderID"]);
                         $csOrd->setCustID($row["custID"]);
                         $csOrd->setIsCustomOrder($row["isCustomOrder"]);
-                        $csOrd->setAmount($row['Amount']);
-                        $csOrd->setDate($row['Date']);
-                        $csOrd->setTransID($row['TransID']);
-                        $csOrd->setStatus($row['Status']);                      
+                        $csOrd->setAmount($row['amount']);
+                        $csOrd->setDate($row['date']);
+                        $csOrd->setTransID($row['transID']);
+                        $csOrd->setStatus($row['status']);                      
                         $myConsumersOrds[$i] = $csOrd;
                         $i++; 
                     }
@@ -68,7 +134,7 @@ class OrdersDAO {
 
         try{
             //establish connection
-            $con = new mysqli("localhost",$this->user,$this->password,"Testing");
+            $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
 
             //prepare statement
 
@@ -99,7 +165,7 @@ class OrdersDAO {
 
         try{    
             //establish a connection
-            $con = new mysqli("localhost", $this->user,$this->password,"Testing");
+            $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
 
             //prepare statement
             $pstmt = $con->prepare($sql);
@@ -124,7 +190,7 @@ class OrdersDAO {
 
         try{
             //establish connection
-            $con = new mysqli("localhost",$this->user,$this->password,"Testing");
+            $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
 
             //prepare statement
             $pstmt = $con->prepare($sql);
@@ -150,11 +216,11 @@ class OrdersDAO {
 
         $con = null;
         $pstmt = null;
-        $sql = "SELECT * FROM orders WHERE CustID=?;";
+        $sql = "SELECT * FROM orders WHERE custID=?;";
         $orders = array(); 
         try{
             //establish connection
-            $con = new mysqli("localhost", $this->user,$this->password,"Testing");
+            $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
             //prepare statement
             $pstmt = $con->prepare($sql);
             $pstmt->bind_param("i",$custID);
@@ -197,5 +263,49 @@ class OrdersDAO {
 
     }
 
+    public function getOrderByID($orderID){
+        $order = null; 
+        $con = null;
+        $pstmt = null; 
+        $sql = "SELECT * FROM orders WHERE orderID=?";
+
+        try{
+
+            //establish connection
+            $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
+             //prepare statement
+             $pstmt = $con->prepare($sql);
+             $pstmt->bind_param("i",$orderID);
+             $pstmt->execute();
+             $result = $pstmt->get_result();
+
+             if($result!=null){
+                $i=0;
+                while ($row = $result->fetch_assoc()) {
+                    $csOrd = new Orders();
+                    $csOrd->setOrderID ($row["orderID"]);
+                    $csOrd->setCustID($row["custID"]);
+                    $csOrd->setIsCustomOrder($row["isCustomOrder"]);
+                    $csOrd->setAmount($row['amount']);
+                    $csOrd->setDate($row['date']);
+                    $csOrd->setTransID($row['transID']);
+                    $csOrd->setStatus($row['status']);                      
+                    $order = $csOrd;
+                    $i++; 
+                }
+
+            }
+            $con->close();
+            return $order;
+        }catch(Exception $e) {
+            echo "couldnt establish connection";
+            return null; 
+        }
+
+
+    }
+
 }
+
+
 ?>
