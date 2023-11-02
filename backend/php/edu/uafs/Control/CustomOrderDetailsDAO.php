@@ -1,19 +1,19 @@
 <?php
-require('/srv/www/htdocs/php/edu/uafs/Model/CustomOrderDetails.php');
+
     class CustomOrderDetailsDAO{
 
-        private $userName = "admin";
-        private $password ="mypass1"; 
-
+        private $userName = "root";
+        private $password ="Garmon22"; 
+        private $db = "test"; 
         public function getAllCustomOrderDetails(){
             $allCustomOrderDetails = array(); 
             $con = null;
             $pstmt = null; 
-            $sql = "SELECT * FROM Custom_Order_Details";
+            $sql = "SELECT * FROM custom_Order_details";
             
             try{
                 //establish connection
-                $con = new mysqli("localhost",$this->userName,$this->password,"Testing");
+                $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
 
                 //prepare statment
                 $pstmt = $con->prepare($sql);
@@ -26,10 +26,10 @@ require('/srv/www/htdocs/php/edu/uafs/Model/CustomOrderDetails.php');
                     while($row = $result->fetch_assoc()){
 
                         $customOrder = new CustomOrderDetails();
-                        $customOrder->setCustOrderDetailID($row["custOrderDetailID"]);
-                        $customOrder->setItemId($row["ItemID"]);
-                        $customOrder->setOrderDescription($row["OrderDescription"]);
-                        $customOrder->setOrderID($row["orderID"]);
+                        $customOrder->setCustOrderDetailID($row["custorderdetailid"]);
+                        $customOrder->setItemId($row["itemid"]);
+                        $customOrder->setOrderDescription($row["orderDesription"]);
+                        $customOrder->setOrderID($row["orderid"]);
                         $allCustomOrderDetails[$i] = $customOrder; 
 
                         $i++;
@@ -51,12 +51,13 @@ require('/srv/www/htdocs/php/edu/uafs/Model/CustomOrderDetails.php');
         public function getAllOrderDetailsByOrderId($orderId){
             $con = null;
             $pstmt = null;
-            $sql = "SELECT * FROM Custom_Order_Details WHERE OrderID = @OrderID";
+            $sql = "SELECT * FROM custom_Order_details  WHERE orderid= ?";
             $allCustomOrderDetails = array();
             
             try{
+                
                 //establish connection
-                $con = new mysqli("localhost",$this->userName,$this->password,"Testing");
+                $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
 
                 //prepare statment
                 $pstmt = $con->prepare($sql);
@@ -72,10 +73,10 @@ require('/srv/www/htdocs/php/edu/uafs/Model/CustomOrderDetails.php');
                     $i = 0;
                     while($row = $result->fetch_assoc()){
                         $customOrder = new CustomOrderDetails();
-                        $customOrder->setCustOrderDetailID($row["custOrderDetailID"]);
-                        $customOrder->setItemID($row["ItemID"]);
-                        $customOrder->setOrderDescription($row["OrderDescription"]);
-                        $customOrder->setOrderID($row["OrderID"]);
+                        $customOrder->setCustOrderDetailID($row["custorderdetailid"]);
+                        $customOrder->setItemID($row["itemid"]);
+                        $customOrder->setOrderDescription($row["orderDesription"]);
+                        $customOrder->setOrderID($row["orderid"]);
                         $allCustomOrderDetails[$i]= $customOrder;
                         $i++;
                     }
@@ -84,8 +85,7 @@ require('/srv/www/htdocs/php/edu/uafs/Model/CustomOrderDetails.php');
                 $con->close();
                 return $allCustomOrderDetails;
             }catch(Exception $e){
-
-
+             
             }
 
         }
@@ -95,12 +95,12 @@ require('/srv/www/htdocs/php/edu/uafs/Model/CustomOrderDetails.php');
 
             $con=null;
             $pstmt=null; 
-            $sql = "INSERT INTO Custom_Order_Details(ItemID, OrderDescription, OrderID)VALUES(?,?,?)";
+            $sql = "INSERT INTO custom_Order_details (ItemID, OrderDescription, orderID)VALUES(?,?,?)";
 
             try{
                 
                 //establish connection
-                $con = new mysqli("localhost",$this->userName,$this->password,"Testing");
+                $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
 
                 //prepare statement
                 $pstmt = $con->prepare($sql);
@@ -120,11 +120,11 @@ require('/srv/www/htdocs/php/edu/uafs/Model/CustomOrderDetails.php');
 
             $con=null;
             $pstmt=null;
-            $sql = "DELETE FROM Custom_Order_Details WHERE CustOrderDetailID =?";
+            $sql = "DELETE FROM custom_Order_details  WHERE custOrderDetailID =?";
 
             try{
                 //establish connection
-                $con = new mysqli("localhost",$this->userName,$this->password,"Testing");
+                $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
                 //prepare statement
                 $pstmt = $con->prepare($sql);
                 $pstmt->bind_param("i", $custOrderDetailID); 
@@ -141,10 +141,10 @@ require('/srv/www/htdocs/php/edu/uafs/Model/CustomOrderDetails.php');
         public function updateOrder( $itemID,$orderDescription,$orderID,$custOrderDetailID){
             $con=null;
             $pstmt=null;
-            $sql = "UPDATE Custom_Order_Details SET ItemID =?,OrderDescription =?,OrderID =? WHERE CustOrderDetailID =?";
+            $sql = "UPDATE custom_Order_details  SET ItemID =?,OrderDescription =?,OrderID =? WHERE CustOrderDetailID =?";
             try{
                 //establish connection
-                $con = new mysqli("localhost",$this->userName,$this->password,"Testing");
+                $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
                 
                 //prepare statement
                 $pstmt = $con->prepare($sql);
@@ -169,11 +169,11 @@ require('/srv/www/htdocs/php/edu/uafs/Model/CustomOrderDetails.php');
 
             $con=null;
             $pstmt=null;
-            $sql = "DELETE FROM Custom_Order_Details WHERE OrderID = ?";
+            $sql = "DELETE FROM custom_Order_details  WHERE OrderID = ?";
 
             try{
                 //establish connection
-                $con = new mysqli("localhost", $this->userName,$this->password,"Testing");
+                $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
                 
                 //prepare statement
                 $pstmt = $con->prepare($sql);
@@ -191,6 +191,54 @@ require('/srv/www/htdocs/php/edu/uafs/Model/CustomOrderDetails.php');
                 return false;
             }
         }
+    }
+
+    class CustomOrderDetails{
+
+        private $custOrderDetailID;
+        private $ItemID;
+        private $orderDescription;
+        private $OrderID;
+
+        public function getCustOrderDetailID() {
+            return $this->custOrderDetailID;
+        }
+    
+        // Setter for custOrderDetailID
+        public function setCustOrderDetailID($custOrderDetailID) {
+            $this->custOrderDetailID = $custOrderDetailID;
+        }
+    
+        // Getter for ItemID
+        public function getItemID() {
+            return $this->ItemID;
+        }
+    
+        // Setter for ItemID
+        public function setItemID($ItemID) {
+            $this->ItemID = $ItemID;
+        }
+    
+        // Getter for orderDescription
+        public function getOrderDescription() {
+            return $this->orderDescription;
+        }
+    
+        // Setter for orderDescription
+        public function setOrderDescription($orderDescription) {
+            $this->orderDescription = $orderDescription;
+        }
+    
+        // Getter for OrderID
+        public function getOrderID() {
+            return $this->OrderID;
+        }
+    
+        // Setter for OrderID
+        public function setOrderID($OrderID) {
+            $this->OrderID = $OrderID;
+        }
+
     }
 
 ?>

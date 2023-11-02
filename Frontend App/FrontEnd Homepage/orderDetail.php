@@ -17,12 +17,33 @@
 
     <header>
    
+        <?php
+          
+         $OrderID = $_GET["searchID"];
+       
+         
+       
+         require("../php/edu/uafs/Control/OrdersDAO.php"); 
+         
+
+         $ord = new OrdersDAO();
         
-    
+         $currentOrder = $ord->getOrderByID($OrderID);
+        
+         $found = false; 
+        if ($currentOrder == null) {
+            $found = false;
+        }else{
+            $found = true;
+              
+        }
+        
+        ?>
+   
             
         <nav class="navbar" data-bs-theme="dark">
                 
-                <h2 style="color: white; font-family: anton;"><a id="logoLink" href="/">TB Borders</a></h2>
+                <h2 style="color: white; font-family: Times New Roman;"><a id="logoLink" href="/">TB Borders</a></h2>
                 <form class="form-inline my-2 my-lg-0" style="margin-left: 5%;" action="./orderDetail.php" method="GET">
                     <div class="container ">
 
@@ -55,7 +76,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="./logout.php">
                             <i class="bi bi-door-open"></i>
                         </a>
                     </li>
@@ -70,43 +91,94 @@
     
         <div class="container-lg">
             <table class="table table-hover">
-           
+            <?php
+            
+                     $res = null; 
+                    if ($found) {
+                        
+                           $customOrderDetailDAO = null;
+                           $customOrderDetail = null;
+                            
+                           $orderDetailDAO = null;
+                           $orderDetail = null; 
+                           
+                           if(strtolower($currentOrder->getIsCustomOrder()) == "yes"){
+                            
+                               require("../php/edu/uafs/Control/CustomOrderDetailsDAO.php");
+                              
+                               $customOrderDetailDAO = new CustomOrderDetailsDAO();
+                               
+                               $customOrderDetail = $customOrderDetailDAO->getAllOrderDetailsByOrderId($OrderID);
+                              
+                               $res = $customOrderDetail;
+                                
+                           }else{
+                            
+                               require("../php/edu/uafs/Control/NonCustomOrderDetailsDAO.php");
+                               
+                               $orderDetailDAO = new NonCustomOrderDetailsDAO();
+                               $orderDetail = $orderDetailDAO->getNonCustomOrdersBasedOnOrderID($OrderID);
+                                $res = $orderDetail;
+                               
+                           }
+                            ?>
                 <thead>
                   
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Amount</th>
+                            <th scope="col">ItemID:</th>
+                            <th scope="col">Order Description:</th>
+                            <th scope="col">orderID:</th>
                            
                         </tr>
                 </thead>
                 
-                    <?php
-                    
-                      require("../php/edu/uafs/Control/OrdersDAO.php");
-                      $ord = new OrdersDAO();
-                      $res =  $ord->getAllItemFromDatabase(); 
+                 
+                           <?php       
                     $i = 0;
+                     
                        while($i < sizeof($res)){
+                        
                     ?>
                     <tbody>
+                    <?php
+                    if(strtolower($currentOrder->getIsCustomOrder()) == "yes"){
+                        
+                        ?>
+                        <td><?php echo $res[$i]->getCustOrderDetailID()?></td>
+                    <?php }else{?>
+                        <td><?php echo $res[$i]->getOrderDetailID()?></td>
+                        <?php } ?>
+                        <td><?php echo $res[$i]->getItemID()?></td>
+                        <td><?php echo $res[$i]->getOrderDescription()?></td>
                         <td><?php echo $res[$i]->getOrderID()?></td>
-                        <td><?php echo $res[$i]->getDate()?></td>
-                        <td><?php echo $res[$i]->getStatus()?></td>
-                        <td>$<?php echo $res[$i]->getAmount()?></td>
                         
                     </tbody>
                     <?php
                         $i++; 
                         }
+                    }else{
+                        ?>
+                           <title>Bootstrap 5 404 Error Page</title>
+                           <div class="d-flex align-items-center justify-content-center vh-100">
+                            <div class="text-center">
+                                <h1 class="display-1 fw-bold">No Result!</h1>
+                                <p class="fs-3"> <span class="text-danger">Opps!</span> Order not found.</p>
+                                <p class="lead">
+                                    The order you’re looking for doesn’t exist.
+                                </p>
+                                <a href="orders.php" class="btn btn-primary">Go back</a>
+                            </div>
+                        </div>
+                        <?php
+                    }
                     ?>
                
             </table>
 
             </div>
-            
 
+          
     </main>
 
    
