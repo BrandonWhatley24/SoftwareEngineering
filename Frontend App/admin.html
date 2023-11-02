@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Timeless Borderes Checkout</title>
+    <title>Timeless Borderes Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
 
@@ -17,12 +17,12 @@
         }
         .titleFont{
         color: white;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Times New Roman', Times, serif;
         font-weight: bold;
         }
         .headerFont{
         color: white;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Times New Roman', Times, serif;
 
         }
         .headerSpacing{
@@ -53,7 +53,7 @@
         border: 1px solid rgba(0, 0, 0, 0.8);
         padding: 20px;
         font-size: 30px;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Times New Roman', Times, serif;
         text-align: center;
         line-height: 25px;
         height: 200px;
@@ -68,7 +68,7 @@
           border: 3px solid black;
           text-align:center;
           padding: 30px 0;
-          font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+          font-family: 'Times New Roman', Times, serif;
         }
         /* 4 INFORMATION BOXES AT THE TOP END */
 
@@ -84,7 +84,7 @@
           background-color: #75BEDA;
           border: 1px solid rgba(0, 0, 0, 0.8);
           font-size: 30px;
-          font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+          font-family: 'Times New Roman', Times, serif;
           text-align: center;
           line-height: 25px;
           height: 700px;
@@ -93,7 +93,7 @@
         }
         .table-title {
         padding-top: 20px;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: 'Times New Roman', Times, serif;
         font-size: 30px;
         font-weight: bold;
         padding-bottom: 20px;
@@ -117,21 +117,88 @@
           width:250px;
 
         }
-        .table-stretch {
-
-        }
 
         /* FOOTER */
         .footer {
           margin: auto;
           width: 100%;
           background-color: #efefef;
-          font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+          font-family: 'Times New Roman', Times, serif;
           font-size: 20px;
           text-align: center;
           color: #522E24;
         }
         /* FOOTER END */
+
+
+        /* MODAL START */
+body {
+  font-family: 'Times New Roman', Times, serif;
+	background: #ddd;
+}
+
+h1 {
+	text-align: center;
+	font-family: 'Times New Roman', Times, serif;
+	color: #333;
+	text-shadow: 0 1px 0 #fff;
+	margin: 50px 0;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.5);
+	transition: opacity 200ms;
+  visibility: hidden;
+	opacity: 0;
+	&.light {
+    background: rgba(255,255,255,0.5);
+  }
+  .cancel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: default;
+  }
+  &:target {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.popup {
+	margin: 75px auto;
+	padding: 20px;
+	background: #fff;
+	border: 1px solid #807c7c;
+	width: 300px;
+	box-shadow: 0 0 50px rgba(0,0,0,0.5);
+	position: relative;
+}
+.close {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 20px;
+    right: 20px;
+    opacity: 0.8;
+    transition: all 200ms;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #272727;
+
+}
+.content {
+    max-height: 900px;
+    overflow: auto;
+}
+
+        /* MODAL END */
 
     </style>
 
@@ -249,20 +316,57 @@
                 <td class="table-cell">256</td>
                 <td class="table-cell">Classic Frame</td>
                 <td class="table-cell">150</td>
-                <td class="table-cell"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">EDIT</button>
-                <div id="myModal" role="dialog">
-                <div class="modal-dialog"></div>
-                </td>
-                <td class="table-cell"><button type="button" class="btn btn-danger">DELETE</button></td>
+                <td class="table-cell"><a class="btn btn-warning" href="#popup1">EDIT</a></td>
+                <td class="table-cell"><button type="submit" class="btn btn-danger">DELETE</button></td>
             </table>
         </div>
       </div>
       <!-- INVENTORY MANAGEMENT END -->
 
-      <div class="modal-dialog modal-dialog-centered" id="myModal"></div>
+    <!-- MODAL START -->
 
+    <!-- INSIDE MODAL -->
+    <div id="popup1" class="overlay">
+      <div class="popup">
+        <h2>EDIT ITEM</h2>
+        <a class="close" href="#">&times;</a>
+        <div class="content">
 
-      <br>
+          <div class="col-auto">
+            <label for="itemNamer" class="col-form-label">ITEM NAME</label>
+          </div>
+          <div class="col-auto">
+            <input type="text" id="itemNamer" class="form-control" aria-describedby="passwordHelpInline">
+          </div>
+          <div class="col-auto">
+            <span id="passwordHelpInline" class="form-text">
+              ENTER ITEM NAME
+            </span>
+          </div>
+        </div>
+
+        <div class="col-auto">
+          <label for="itemQuantity" class="col-form-label">ITEM QUANTITY</label>
+        </div>
+        <div class="col-auto">
+          <input type="number" id="itemQuantity" class="form-control" aria-describedby="passwordHelpInline">
+        </div>
+        <div class="col-auto">
+          <span id="passwordHelpInline" class="form-text">
+            ENTER NUMBER OF ITEM IN STORAGE
+          </span>
+        </div>
+
+        <br>
+        <button type="submit" class="btn btn-success" onclick="">SUBMIT CHANGE</button>
+        <!-- INSIDE MODAL -->
+
+      </div>
+      </div>
+    </div>
+    
+    <!-- MODAL END -->
+
 
       <div class="footer">
       Limitless Borders Inc.©2023   Powered by our AI Overlords. 
