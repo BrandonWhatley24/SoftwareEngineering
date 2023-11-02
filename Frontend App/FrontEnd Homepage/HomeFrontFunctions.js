@@ -1,8 +1,13 @@
 let currItem = {};
 let currListOfItems = [];
+let currOrder = {material: "Gold", requestedMaterial: "", length: 11, width: 8.5, color: "", requestedColor: "", customization: "", quantity: 1}
 
-function pageStartup() {
-    console.log("Page Startup called");
+/***********************/
+/***Mapping Functions***/
+/***********************/
+
+//Function that is run whenever the page is first opened
+function HomeFrontPageStartUp() {
 
     //Mock data that will be replaced by the axios call to the PHP
     const items = [
@@ -38,7 +43,7 @@ function pageStartup() {
                                             <div class="card-body">
                                                 <h5 class="card-title">${items[i].title}</h5>
                                                 <p class="card-text">${items[i].text} </p>
-                                                <button type="submit" id="buyButton${i}" name="buyButton${i}" onclick="setCurrItem(${i})">Add to cart</button>
+                                                <button type="submit" id="buyButton${i}" name="buyButton${i}" onclick="routeToBuyItemPage(${i})">Add to cart</button>
                                             </div>
                                         </div>
                                     </div>`;
@@ -59,7 +64,7 @@ function pageStartup() {
                                             <div class="card-body">
                                                 <h5 class="card-title">${items[i].title}</h5>
                                                 <p class="card-text">${items[i].text} </p>
-                                                <button type="submit" id="buyButton${i}" name="buyButton${i}" onclick="setCurrItem(${i})">Add to cart</button>
+                                                <button type="submit" id="buyButton${i}" name="buyButton${i}" onclick="routeToBuyItemPage(${i})">Add to cart</button>
                                             </div>
                                         </div>
                                     </div>`;
@@ -78,7 +83,7 @@ function pageStartup() {
                                             <div class="card-body">
                                                 <h5 class="card-title">${items[i].title}</h5>
                                                 <p class="card-text">${items[i].text} </p>
-                                                <button type="submit" id="buyButton${i}" name="buyButton${i}" onclick="setCurrItem(${i})">Add to cart</button>
+                                                <button type="submit" id="buyButton${i}" name="buyButton${i}" onclick="routeToBuyItemPage(${i})">Add to cart</button>
                                             </div>
                                         </div>
                                     </div>`;
@@ -95,54 +100,13 @@ function pageStartup() {
     }
 }
 
-function setCurrItem(index){
+//Function is called whenever you push to add to cart
+//At the end of the operations it will route you to the buyItem Page
+function routeToBuyItemPage(index){
+
     this.currItem = this.currListOfItems[parseInt(index)];
-
-    let html = routeToBuyItemPage(this.currItem);
-
-    localStorage["html"] = html;
-    localStorage["currItem"] = this.currItem;
-
-    //Change this line to route
-    window.location.href = "BuyItem.html";
-}
-
-function addItemToCart(){
-    let item = localStorage["currItem"];
-
-    //Add the operation to be able to add the item to the cart
-}
-
-function getBuyPageHTML(){
-    let html = localStorage["html"];
-
-    informationContainer = document.getElementById('itemInformation');
-    informationContainer.innerHTML = html;
-}
-
-function getCurrItem(){
-    return currItem;
-}
-
-function getMaterialTypes(){
-    //Needs to be a call to the php
-    let materialTypes = ['Gold', 'Wood', 'Aluminum', 'Polystyrene'];
-
-    return materialTypes;
-}
-
-
-function getColors(){
-    //Needs to be a call to the php
-    let colors = ['Red','Gold Matte', 'Black', 'Blue'];
-
-    return colors;
-}
-
-function routeToBuyItemPage(BuyItem){
-    console.log(this.currItem);
     
-    let item = BuyItem;
+    let item = this.currItem;
     let html = '';
     let defaultLength = 8;
     let defaultWidth = 11.5;
@@ -166,7 +130,7 @@ function routeToBuyItemPage(BuyItem){
                     </div>
                     <label for="material">Material Type:</label>
                     <div class="itemInput">
-                        <select name="material" id="color">`;
+                        <select name="material" id="material" onchange="changeMaterial(this.value)">`;
 
     for(let i = 0; i < materialTypes.length; i++){
         if(materialTypes[i] === item.material){
@@ -180,21 +144,21 @@ function routeToBuyItemPage(BuyItem){
                     </div>
                     <div class="customItemInput">
                         Leave requested material here if preferred material isn't found:<br>
-                        <input type="text" id="materialCustom" name="materialCustom">
+                        <input type="text" id="materialCustom" name="materialCustom" onKeyDown="changeRequestedMaterial(this.value)">
                     </div>
                     <br>
 
                     <label for="size">Frame Size:</label>
                     <div class="itemInput">
-                        <input type="number" id="height" name="width" value="${defaultLength}" min="1">
+                        <input type="number" id="height" name="length" onKeyDown="changeLength(this.value)" onchange="changeLength(this.value);" value="${defaultLength}" min="1">
                             x
-                        <input type="number" id="width" name="width" value="${defaultWidth}" min="1">
+                        <input type="number" id="width" name="width" onKeyDown="changeWidth(this.value)" onchange="changeWidth(this.value);" value="${defaultWidth}" min="1">
                     </div>
                     <br>
                     
                     <label for="color">Frame Color:</label>
                     <div class="itemInput">
-                        <select name="color" id="color">`;
+                        <select name="color" id="color" onchange="changeColor(this.value)">`;
 
     for(let i = 0; i < colors.length; i++){
         if(colors[i] === item.color){
@@ -208,26 +172,138 @@ function routeToBuyItemPage(BuyItem){
                     </div>
                     <div class="customItemInput">
                         Leave requested color here if preferred color isn't found:<br>
-                        <input type="text" id="materialCustom" name="materialCustom">
+                        <input type="text" id="colorCustom" name="colorCustom" onKeyDown="changeRequestedColor(this.value)">
                     </div>
                     <br>
     
                     <label for="customization">Customization (Leave any specific instructions here):</label>
                     <div class="itemInput">
-                        <textarea name="custom" id="custom">Enter customization here...</textarea>
+                        <textarea name="custom" id="custom" onKeyDown="changeCustomization(this.value)">Enter customization here...</textarea>
                     </div>
                     <br>   
     
                     <label for="quantity">Quantity:</label>
-                    <input type="number" id="quantity" name="quantity" value="1" min="1">
+                    <input type="number" id="quantity" name="quantity" value="1"  onKeyDown="changeQuantity(this.value)" onchange="changeQuantity(this.value);">
                     <br><br>
                     <input type="submit" value="Add to Cart" onclick="addItemToCart()">
                     <br><br>
                     <div class="displayTotal">
                         <h3>Total:</h3>
-                        <h4>$25.00</h4>
+                        <h4 id="totalPrice"></h4>
                     </div>
                 </div>`;
 
-    return html;
+    localStorage["html"] = html;
+    localStorage["currItem"] = this.currItem;
+
+    window.location.href = "BuyItem.html";
+
+}
+
+//Function is called to insert the html into the div with the class of itemIndormation on the buy item page
+function getBuyPageHTML(){
+    let html = localStorage["html"]
+
+    itemContainer = document.getElementById('itemInformation');
+    itemContainer.innerHTML = html;
+}
+
+/****************************/
+/***Data Mutator Functions***/
+/****************************/
+
+//This function is called whenevr you push the add to cart button on the buy item page
+function addItemToCart(){
+    calculateTotal();
+
+    let item = currItem;
+
+    //Add the operation to be able to add the item to the cart
+}
+
+/*****************************/
+/***Data Accessor Functions***/
+/*****************************/
+
+//This function will be called to retrieve all of the material types
+function getMaterialTypes(){
+    //Needs to be a call to the php
+    let materialTypes = ['Gold', 'Wood', 'Aluminum', 'Polystyrene'];
+
+    return materialTypes;
+}
+
+//This function will be called to retrieve all of the colors
+function getColors(){
+    //Needs to be a call to the php
+    let colors = ['Red','Gold Matte', 'Black', 'Blue'];
+
+    return colors;
+}
+
+/*********************/
+/***Event Functions***/
+/*********************/
+
+function changeWidth(width){
+    currOrder.width = parseInt(width);
+
+    calculateTotal();
+}
+
+function changeLength(length){
+    currOrder.length = parseInt(length);
+
+    calculateTotal();
+}
+
+function changeMaterial(material){
+    currOrder.material = material;
+
+    calculateTotal();
+}
+
+function changeRequestedMaterial(material){
+    currOrder.requestedMaterial = material;
+
+    calculateTotal();
+}
+
+function changeColor(color){
+    currOrder.color = color;
+
+    calculateTotal();
+}
+
+function changeRequestedColor(color){
+    currOrder.customColor = color;
+
+    calculateTotal();
+}
+
+function changeCustomization(customization){
+    currOrder.customization = customization;
+
+    calculateTotal();
+}
+
+function changeQuantity(quantity){
+    currOrder.quantity = quantity;
+
+    calculateTotal();
+}
+
+/***************************/
+/***Calculation Functions***/
+/***************************/
+
+function calculateTotal(){
+    let perimeter = currOrder.length * 2 + currOrder.width * 2;
+
+    let costPerInch = 0.60;
+
+    let total = (perimeter * costPerInch * currOrder.quantity).toFixed(2);
+
+    priceContainer = document.getElementById('totalPrice');
+    priceContainer.innerHTML = "$" + total;
 }
