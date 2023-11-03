@@ -1,0 +1,1 @@
+privateDomain.ignorelist.com	

@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,20 +12,47 @@
 </head>
 <body>
 <?php
-
-    require("../php/edu/uafs/Control/itemsDAO.php");
-    // these items are hardcoded for now Need to figure out the session management part for the cart
-    $item1 = new item(1,23.33,"item1","2'","4'");
-    $item2 = new item(2,23.33,"item1","2'","4'");
-    $item3 = new item(3,23.33,"item1","2'","4'");
-
-    $cart = [$item1,$item2,$item3];
+error_reporting(E_ALL); 
+ini_set('display_errors', '1');
+session_start();
+//var_dump($_POST);
+//var_dump($_SERVER);
+require("../php/edu/uafs/Control/itemsDAO.php");
+$cart = [];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Retrieve the JSON string from the hidden input field
+    $cartJSON = $_POST['cartData'];
+  
+    // Decode the JSON string into a PHP array
+    $cartArray = json_decode($cartJSON,true);
+  
+    if ($cartArray !== null) {
+      // Now, $cartArray contains your cart data as a PHP array of objects
+      // You can loop through it and process the items
+      
+      for($i =0; $i < count($cartArray);$i++){
+        $item = new item(0,$cartArray[$i]["price"],$cartArray[$i]["name"],12,12); 
+        $cart[]= $item;
+      }  
+    } else {
+      // Handle the case where JSON couldn't be decoded
+      echo "Failed to decode JSON data.";
+    }
+  }
+  
+  
+    
+    echo "printing out cart"; 
+    for ($i = 0; $i < count($cart);$i++){
+        echo $cart[$i]->getitemName();
+        echo $cart[$i]->getitemPrice();
+    }
 
 ?>
     <header>
     <nav class="navbar" data-bs-theme="dark">
                 
-                <h2 style="color: white; font-family: Times New Roman;"><a id="logoLink" href="/">TB Borders</a></h2>
+                <h2 style="color: white; font-family: Times New Roman;"><a id="logoLink" href="./HomeFront.php">TB Borders</a></h2>
                 <form class="form-inline my-2 my-lg-0" style="margin-left: 5%;">
                     <div class="container ">
                         <div class="row">
@@ -48,12 +77,12 @@
 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="./checkout.php">
                             <i class="bi bi-cart-check"></i>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="./logout.php">
                             <i class="bi bi-door-open"></i>
                         </a>
                     </li>
@@ -139,6 +168,7 @@
                                                 <?php 
                                                 $total = 0;
                                                 $i = 0;
+                                                //displays the checkout summary box
                                                 while ($i < count($cart)) {
                                                     ?>
                                                     <tr>
@@ -173,44 +203,14 @@
     </main>
     
       <!-- Footer -->
-<!-- Footer -->
-<footer class="bg-dark text-center text-white " >
-                <!-- Grid container -->
-                <div class="container p-1" >
-                    <!-- Section: Social media -->
-                    <section class="mb-1" >
 
-                    <!-- Twitter -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                        ><i class="bi bi-twitter"></i>
-                    </a>
+    <footer class="footer">
+        <div class="footcontainer">
+            <div class="footer">Limitless Borders Inc.&copy;2023 &ensp; Powered by our AI Overlords.</div>
 
-                    <!-- facebook -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                        ><i class="bi bi-facebook"></i></a>
+        </div>
 
-                    <!-- Instagram -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                        ><i class="bi bi-instagram"></i></a>
-
-                    <!-- Linkedin -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                        ><i class="bi bi-linkedin"></i></a>
-
-                    <!-- Github -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                        ><i class="bi bi-github"></i></a>
-                    </section>
-
-                <!-- Copyright -->
-                <div class="text-center " style="background-color: rgba(0, 0, 0, 0.2);">
-                    © 2020 Copyright:
-                    <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-                </div>
-                <!-- Copyright -->
-</footer>
-<!-- Footer -->
-
+    </footer>
     
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -1,6 +1,6 @@
 <?php
 
-class Orders{
+class Orders implements JsonSerializable{
     private $orderID;
     private $status;
     private $amount;
@@ -9,7 +9,20 @@ class Orders{
     private $custID;
     private $isCustomOrder;
     private $transID;
-
+    // Adding so I can send the private fields through json
+    public function jsonSerialize() {
+        // Define which properties you want to serialize
+        return [
+            'date' => $this->getDate(),
+            'orderID' => $this->getOrderID(),
+            'status'=> $this->getStatus(),
+            'amount'=> $this->getAmount(),
+             'custID'=> $this->getCustID(),
+            'isCustomOrder'=> $this->getIsCustomOrder(),
+            'transID'=>$this->getTransID(),
+            // ... Include other properties you want to serialize
+        ];
+    }
     public function getCustID() {
         return $this->custID;
     }

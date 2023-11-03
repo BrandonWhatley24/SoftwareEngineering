@@ -22,13 +22,12 @@
             
         <nav class="navbar" data-bs-theme="dark">
                 
-                <h2 style="color: white; font-family: anton;"><a id="logoLink" href="/">TB Borders</a></h2>
+                <h2 style="color: white; font-family: anton;"><a id="logoLink" href="./HomeFront.php">TB Borders</a></h2>
+                
+                <!--seach bar for orders. This will rederict to An order details page -->
                 <form class="form-inline my-2 my-lg-0" style="margin-left: 5%;" action="./orderDetail.php" method="GET">
                     <div class="container ">
-
-                    
                         <div class="row">
-                      
                                 <div class="col-9">
                                     <input name="searchID" id="searchBar" class="form-control mr-sm-2" required type="text" placeholder="Search by ID" aria-label="Search">
                                 </div>
@@ -37,7 +36,6 @@
                                         <i class="bi bi-search"></i>
                                     </button>
                                 </div>
-                         
                         </div>
                     </div>
                 </form>
@@ -50,12 +48,12 @@
 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="./orders.php">
                             <i class="bi bi-cart-check"></i>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="./logout.php">
                             <i class="bi bi-door-open"></i>
                         </a>
                     </li>
@@ -83,7 +81,7 @@
                 </thead>
                 
                     <?php
-                    
+                    // display all orders for the current customer.
                       require("../php/edu/uafs/Control/OrdersDAO.php");
                       $ord = new OrdersDAO();
                       $res =  $ord->getAllItemFromDatabase(); 
@@ -110,43 +108,13 @@
     </main>
 
    
-<!-- Footer -->
-<footer class="bg-dark text-center text-white " >
-                <!-- Grid container -->
-                <div class="container p-1" >
-                    <!-- Section: Social media -->
-                    <section class="mb-1" >
+    <footer class="footer">
+        <div class="footcontainer">
+            <div class="footer">Limitless Borders Inc.&copy;2023 &ensp; Powered by our AI Overlords.</div>
 
-                    <!-- Twitter -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                        ><i class="bi bi-twitter"></i>
-                    </a>
+        </div>
 
-                    <!-- facebook -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                        ><i class="bi bi-facebook"></i></a>
-
-                    <!-- Instagram -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                        ><i class="bi bi-instagram"></i></a>
-
-                    <!-- Linkedin -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                        ><i class="bi bi-linkedin"></i></a>
-
-                    <!-- Github -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                        ><i class="bi bi-github"></i></a>
-                    </section>
-
-                <!-- Copyright -->
-                <div class="text-center " style="background-color: rgba(0, 0, 0, 0.2);">
-                    © 2020 Copyright:
-                    <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-                </div>
-                <!-- Copyright -->
-</footer>
-<!-- Footer -->
+    </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
