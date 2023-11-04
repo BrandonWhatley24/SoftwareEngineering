@@ -9,15 +9,7 @@ let currOrder = {material: "Gold", requestedMaterial: "", length: 11, width: 8.5
 //Function that is run whenever the page is first opened
 function HomeFrontPageStartUp() {
 
-    //Mock data that will be replaced by the axios call to the PHP
-    const items = [
-        { image: 'images/goldFrame.jpg', title: 'Golden Frame', text: 'This Golden Frame', color: 'Gold', material: 'Gold' },
-        { image: 'images/woodenFrame.jpg', title: 'Wooden Frame', text: 'This is a Wooden Frame', color: 'Brown', material: 'Wood' },
-        { image: 'images/blackFrame.avif', title: 'Black Frame', text: 'This is a wooden Frame with black borders', color: 'Black', material: 'Wood' },
-        { image: 'images/redFrame.jpg', title: 'Red Wood Frame', text: 'This is a Red Frame.', color: 'Red', material: 'Wood' },
-        { image: 'images/woodenFrame.jpg', title: 'Wooden Frame', text: 'This is a Wooden Frame', color: 'Brown', material: 'Wood' },
-        { image: 'images/blackFrame.avif', title: 'Black Frame', text: 'This is a wooden Frame with black borders.', color: 'Black', material: 'Wood' }
-    ]
+    let items = getAllItems();
 
     this.currListOfItems = items;
 
@@ -239,6 +231,23 @@ function getColors(){
     let colors = ['Red','Gold Matte', 'Black', 'Blue'];
 
     return colors;
+}
+
+async function getAllItems(){
+    try {
+        const response = await fetch('api.php?action=getAllItems');
+        if (response.ok) {
+            const data = await response.json();
+            // Display the data in the 'output' div
+            let items = JSON.stringify(data, null, 2);
+        } else {
+            console.error('Failed to fetch data from the API.');
+        }
+
+        return items;
+    } catch (error) {
+        console.error('An error occurred:', error);
+    }
 }
 
 /*********************/
