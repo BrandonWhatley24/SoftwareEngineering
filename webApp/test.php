@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-
+<!--testing the cart session management-->
 <h1>My Cart</h1>
 
 <script>

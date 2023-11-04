@@ -5,7 +5,7 @@
 </head>
 <body>
     <div id="output"></div>
-
+    <!-- testing the api endpoint -->
     <script>
         // Create an async function to fetch data from the API
         async function getDataFromAPI() {

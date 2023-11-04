@@ -1,12 +1,24 @@
 <?php
-
-class Item {
+require("Creds.php"); 
+class Item implements JsonSerializable{
     private $id;
     private $itemPrice;
     private $itemName;
     private $itemLength;
     private $itemWidth;
 
+    public function jsonSerialize() {
+        // Define which properties you want to serialize
+        return [
+            'id' => $this->getId(),
+            'itemPrice' => $this->getitemPrice(),
+            'itemName'=> $this->getitemName(),
+            'itemLength'=> $this->getitemLength(),
+             'itemWidth'=> $this->getitemWidth(),
+           
+            // ... Include other properties you want to serialize
+        ];
+    }
     public function __construct($id, $itemPrice, $itemName, $itemLength,$itemWidth) {
         $this->id = $id;
         $this->itemPrice = $itemPrice;
@@ -48,5 +60,44 @@ class Item {
     public function setitemWidth($itemWidth) {
         $this->itemWidth = $itemWidth;
     }
+
+    // Additional methods for your entity can be added here
 }
+
+class ItemDAO extends Creds {
+    
+
+    
+    public function getAllItems(){
+        $allItems = array();
+        $sql = "SELECT * FROM items";
+        $con = new mysqli($this->getHost(),$this->getUsername(),$this->getPassword(),$this->getDbname());
+        $pstmt = $con->prepare($sql);
+      
+        $pstmt = $con->prepare($sql);
+               
+        $pstmt->execute();
+        $result = $pstmt->get_result();
+
+        if ($result != null) {
+            $i = 0;
+            while ($row = $result->fetch_assoc()) {
+                $csItem = new Item($row["itemID"],$row["itemprice"],$row["itemname"],$row["itemLength"],$row["itemWidth"]);
+                
+                $allItems[$i] = $csItem;
+               
+                $i++; 
+                //$id, $itemPrice, $itemName, $itemLength,$itemWidth
+            }
+        }
+
+        $con->close();
+        return $allItems;
+    
+
+    }
+
+  
+}
+
 ?>
