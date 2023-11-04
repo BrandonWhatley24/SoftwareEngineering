@@ -188,7 +188,7 @@ function routeToBuyItemPage(index){
     localStorage["html"] = html;
     localStorage["currItem"] = this.currItem;
 
-    window.location.href = "BuyItem.html";
+    window.location.href = "BuyItem.php";
 
 }
 
@@ -316,3 +316,4 @@ function calculateTotal(){
     priceContainer = document.getElementById('totalPrice');
     priceContainer.innerHTML = "$" + total;
 }
+

@@ -25,7 +25,7 @@
        
          require("../php/edu/uafs/Control/OrdersDAO.php"); 
          
-
+            ///looks for the order that was searched in the search bar
          $ord = new OrdersDAO();
         
          $currentOrder = $ord->getOrderByID($OrderID);
@@ -92,18 +92,18 @@
         <div class="container-lg">
             <table class="table table-hover">
             <?php
-            
+                    //displays the order details of the given order
                      $res = null; 
                     if ($found) {
-                        
+                         
                            $customOrderDetailDAO = null;
                            $customOrderDetail = null;
                             
                            $orderDetailDAO = null;
                            $orderDetail = null; 
-                           
+                           //checking to see if the order is custom or not
                            if(strtolower($currentOrder->getIsCustomOrder()) == "yes"){
-                            
+                                //custom
                                require("../php/edu/uafs/Control/CustomOrderDetailsDAO.php");
                               
                                $customOrderDetailDAO = new CustomOrderDetailsDAO();
@@ -113,7 +113,7 @@
                                $res = $customOrderDetail;
                                 
                            }else{
-                            
+                                //non custom
                                require("../php/edu/uafs/Control/NonCustomOrderDetailsDAO.php");
                                
                                $orderDetailDAO = new NonCustomOrderDetailsDAO();
@@ -138,7 +138,7 @@
                     $i = 0;
                      
                        while($i < sizeof($res)){
-                        
+                        // display order details information 
                     ?>
                     <tbody>
                     <?php
@@ -158,6 +158,7 @@
                         $i++; 
                         }
                     }else{
+                        // show if the order was not found
                         ?>
                            <title>Bootstrap 5 404 Error Page</title>
                            <div class="d-flex align-items-center justify-content-center vh-100">
@@ -182,44 +183,14 @@
     </main>
 
    
-<!-- Footer -->
-<footer class="bg-dark text-center text-white " >
-                <!-- Grid container -->
-                <div class="container p-1" >
-                    <!-- Section: Social media -->
-                    <section class="mb-1" >
 
-                    <!-- Twitter -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                        ><i class="bi bi-twitter"></i>
-                    </a>
+    <footer class="footer">
+        <div class="footcontainer">
+            <div class="footer">Limitless Borders Inc.&copy;2023 &ensp; Powered by our AI Overlords.</div>
 
-                    <!-- facebook -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                        ><i class="bi bi-facebook"></i></a>
+        </div>
 
-                    <!-- Instagram -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                        ><i class="bi bi-instagram"></i></a>
-
-                    <!-- Linkedin -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                        ><i class="bi bi-linkedin"></i></a>
-
-                    <!-- Github -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                        ><i class="bi bi-github"></i></a>
-                    </section>
-
-                <!-- Copyright -->
-                <div class="text-center " style="background-color: rgba(0, 0, 0, 0.2);">
-                    © 2020 Copyright:
-                    <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-                </div>
-                <!-- Copyright -->
-</footer>
-<!-- Footer -->
-
+    </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
