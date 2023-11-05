@@ -190,7 +190,13 @@ function getBuyPageHTML(){
 function addItemToCart(){
     calculateTotal();
 
+    let cart = JSON.parse(localStorage["cart"]);
     let item = currItem;
+
+    cart.push(item);
+
+    localStorage["cart"] = JSON.stringify(cart);
+
 
     //Add the operation to be able to add the item to the cart
 }
