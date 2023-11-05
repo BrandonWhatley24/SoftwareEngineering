@@ -19,17 +19,19 @@ session_start();
 //var_dump($_SERVER);
 require("../php/edu/uafs/Control/itemsDAO.php");
 $cart = [];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    echo "im here"; 
     // Retrieve the JSON string from the hidden input field
     $cartJSON = $_POST['cartData'];
-  
+    
     // Decode the JSON string into a PHP array
     $cartArray = json_decode($cartJSON,true);
   
     if ($cartArray !== null) {
       // Now, $cartArray contains your cart data as a PHP array of objects
       // You can loop through it and process the items
-      
+     
       for($i =0; $i < count($cartArray);$i++){
         $item = new item(0,$cartArray[$i]["price"],$cartArray[$i]["name"],12,12); 
         $cart[]= $item;
