@@ -12,7 +12,7 @@
     unset($_SESSION['userName']);
     
     // Redirect to the login page
-    header("Location: ./Login.php"); 
+    header("Location: ./index.php"); 
     exit;
 
     
