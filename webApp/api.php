@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['act
 }
 */
 
-require('/srv/www/htdocs/php/edu/uafs/Control/itemsDAO.php'); // Include your DAO class
+require('../php/edu/uafs/Control/itemsDAO.php'); // Include your DAO class
 $itemDAO = new ItemDAO();
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getAllItems') {
     $data = $itemDAO->getAllItems();
