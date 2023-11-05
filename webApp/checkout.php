@@ -18,7 +18,13 @@ session_start();
 //var_dump($_POST);
 //var_dump($_SERVER);
 require("../php/edu/uafs/Control/itemsDAO.php");
+
 $cart = [];
+
+<script>
+    localStorage.setItem('cart', "<?php echo $_SESSION['cart'];?>");
+</script>
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve the JSON string from the hidden input field
     $cartJSON = $_POST['cartData'];

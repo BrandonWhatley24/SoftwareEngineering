@@ -15,6 +15,8 @@ function HomeFrontPageStartUp() {
 
     //Taking in the data from the php and then creating the table with html
 
+    
+
     if (items.length !== 0) {
         let tableHTML = '';
 
@@ -23,18 +25,12 @@ function HomeFrontPageStartUp() {
                 tableHTML +=    `<div class="row">
                                     <div class="col-md-3">
                                         <div class="card">
-                                            <div class="imageScale">`;
-                                            if(items[i].image === 'images/redFrame.jpg'){
-                                                tableHTML += `<img src="${items[i].image}" width="250" height="300" alt="Product ${i}">`;
-                                            }else{
-                                                tableHTML += `<img  src="${items[i].image}" class="card-img-top" alt="Product ${i}">`;
-                                            }
-
-                tableHTML +=                                
-                                            `</div> 
+                                            <div class="imageScale">
+                                                <img  src="webApp\images\goldFrame.jpg" class="card-img-top" alt="Product ${i}">                              
+                                            </div> 
                                             <div class="card-body">
-                                                <h5 class="card-title">${items[i].title}</h5>
-                                                <p class="card-text">${items[i].text} </p>
+                                                <h5 class="card-title">${items[i].itemName}</h5>
+                                                <p class="card-text">${items[i].itemName} </p>
                                                 <button type="submit" id="buyButton${i}" name="buyButton${i}" onclick="routeToBuyItemPage(${i})">Add to cart</button>
                                             </div>
                                         </div>
@@ -44,18 +40,12 @@ function HomeFrontPageStartUp() {
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="card">
-                                            <div class="imageScale">`;
-                                            if(items[i].image === 'images/redFrame.jpg'){
-                                                tableHTML += `<img src="${items[i].image}" width="250" height="300" alt="Product ${i}">`;
-                                            }else{
-                                                tableHTML += `<img  src="${items[i].image}" class="card-img-top" alt="Product ${i}">`;
-                                            }
-
-                tableHTML +=                                
-                                            `</div> 
+                                            <div class="imageScale">
+                                            <img  src="webApp\images\goldFrame.jpg" class="card-img-top" alt="Product ${i}">  
+                                        </div> 
                                             <div class="card-body">
-                                                <h5 class="card-title">${items[i].title}</h5>
-                                                <p class="card-text">${items[i].text} </p>
+                                                <h5 class="card-title">${items[i].itemName}</h5>
+                                                <p class="card-text">${items[i].itemName} </p>
                                                 <button type="submit" id="buyButton${i}" name="buyButton${i}" onclick="routeToBuyItemPage(${i})">Add to cart</button>
                                             </div>
                                         </div>
@@ -63,18 +53,12 @@ function HomeFrontPageStartUp() {
             } else {
                 tableHTML +=        `<div class="col-md-3">
                                         <div class="card">
-                                            <div class="imageScale">`;
-                                            if(items[i].image === 'images/redFrame.jpg'){
-                                                tableHTML += `<img src="${items[i].image}" width="250" height="300" alt="Product ${i}">`;
-                                            }else{
-                                                tableHTML += `<img  src="${items[i].image}" class="card-img-top" alt="Product ${i}">`;
-                                            }
-
-                tableHTML +=                                
-                                            `</div> 
+                                            <div class="imageScale">
+                                                <img  src="webApp\images\goldFrame.jpg" class="card-img-top" alt="Product ${i}">  
+                                            </div> 
                                             <div class="card-body">
-                                                <h5 class="card-title">${items[i].title}</h5>
-                                                <p class="card-text">${items[i].text} </p>
+                                                <h5 class="card-title">${items[i].itemName}</h5>
+                                                <p class="card-text">${items[i].itemName} </p>
                                                 <button type="submit" id="buyButton${i}" name="buyButton${i}" onclick="routeToBuyItemPage(${i})">Add to cart</button>
                                             </div>
                                         </div>
@@ -106,14 +90,12 @@ function routeToBuyItemPage(index){
     let colors = getColors();
 
     html +=     `<div class="imageScale2">
-                    <img src="${item.image}" class="card-img-top" alt="Product 2" height="350">
+                    <img src="webApp\images\goldFrame.jpg" class="card-img-top" alt="Product 2" height="350">
                 </div>
                 <div class="itemDesc">
-                    <h3>Description</h3> <br>
-                    <p>${item.text} </p>
                     <p>Default measurement: ${defaultLength}x${defaultWidth}</p>
-                    <p>Default color: ${item.color}</p>
-                    <p>Default material: ${item.material}</p>
+                    <p>Default color: Black</p>
+                    <p>Default material: Wood</p>
                 </div>
                 <div class="itemBodyContainer">
                     <div class="itemBodyHeader">
@@ -208,7 +190,13 @@ function getBuyPageHTML(){
 function addItemToCart(){
     calculateTotal();
 
+    let cart = JSON.parse(localStorage["cart"]);
     let item = currItem;
+
+    cart.push(item);
+
+    localStorage["cart"] = JSON.stringify(cart);
+
 
     //Add the operation to be able to add the item to the cart
 }
