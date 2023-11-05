@@ -62,7 +62,7 @@ Class:      CS 4003 - Software Engineering
                     <a class="nav-link headerFont" href="./checkout.php" style="color:white;">Checkout</a>
                   </li>
                   <li class="nav-item h">
-                    <a class="nav-link headerFont" href="./login.php" style="color:white;">Logout</a>
+                    <a class="nav-link headerFont" href="./logout.php" style="color:white;">Logout</a>
                   </li>
                 </ul>
               </div>
