@@ -7,9 +7,9 @@ let currOrder = {material: "Gold", requestedMaterial: "", length: 11, width: 8.5
 /***********************/
 
 //Function that is run whenever the page is first opened
-function HomeFrontPageStartUp() {
+async function HomeFrontPageStartUp() {
 
-    let items = getAllItems();
+    let items = await getAllItems();
 
     this.currListOfItems = items;
 
@@ -19,7 +19,7 @@ function HomeFrontPageStartUp() {
         let tableHTML = '';
 
         for (let i = 0; i < items.length; i++) {
-            if (i === 0) {
+            if (i ===0) {
                 tableHTML +=    `<div class="row">
                                     <div class="col-md-3">
                                         <div class="card">
@@ -33,7 +33,7 @@ function HomeFrontPageStartUp() {
                 tableHTML +=                                
                                             `</div> 
                                             <div class="card-body">
-                                                <h5 class="card-title">${items[i].title}</h5>
+                                                <h5 class="card-title">${items[i].itemName}</h5>
                                                 <p class="card-text">${items[i].text} </p>
                                                 <button type="submit" id="buyButton${i}" name="buyButton${i}" onclick="routeToBuyItemPage(${i})">Add to cart</button>
                                             </div>
@@ -232,23 +232,22 @@ function getColors(){
 
     return colors;
 }
-
-async function getAllItems(){
+async function getAllItems() {
     try {
-        const response = await fetch('api.php?action=getAllItems');
-        if (response.ok) {
-            const data = await response.json();
-            // Display the data in the 'output' div
-            let items = JSON.stringify(data, null, 2);
-        } else {
-            console.error('Failed to fetch data from the API.');
-        }
-
-        return items;
+      const response = await fetch('api.php?action=getAllItems');
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data); 
+        return data;
+      } else {
+        console.error('Failed to fetch data from the API.');
+        return [];
+      }
     } catch (error) {
-        console.error('An error occurred:', error);
+      console.error('An error occurred:', error);
+      return [];
     }
-}
+  }
 
 /*********************/
 /***Event Functions***/

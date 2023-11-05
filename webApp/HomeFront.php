@@ -38,7 +38,7 @@ Class:      CS 4003 - Software Engineering
           <div class="collapse navbar-collapse headerFont" id="navbarNavDropdown">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item h">
-                <a class="nav-link headerFont" href="HomeFront.html" style="color: white;">Home</a>
+                <a class="nav-link headerFont" href="HomeFront.php" style="color: white;">Home</a>
               </li>
             
             </ul>
@@ -59,10 +59,10 @@ Class:      CS 4003 - Software Engineering
                   </li>
                   <img src="images/cart.jpg" width="50" height="40" href="#">
                   <li class="nav-item h">
-                    <a class="nav-link headerFont" href="checkout.html" style="color:white;">Checkout</a>
+                    <a class="nav-link headerFont" href="./checkout.php" style="color:white;">Checkout</a>
                   </li>
                   <li class="nav-item h">
-                    <a class="nav-link headerFont" href="login.html" style="color:white;">Logout</a>
+                    <a class="nav-link headerFont" href="./login.php" style="color:white;">Logout</a>
                   </li>
                 </ul>
               </div>
