@@ -1,10 +1,8 @@
 <?php
+require("Creds.php"); 
+    class CustomOrderDetailsDAO extends Creds{
 
-    class CustomOrderDetailsDAO{
-
-        private $userName = "root";
-        private $password ="Garmon22"; 
-        private $db = "test"; 
+        
         public function getAllCustomOrderDetails(){
             $allCustomOrderDetails = array(); 
             $con = null;
@@ -13,7 +11,7 @@
             
             try{
                 //establish connection
-                $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
+                $con = new mysqli($this->getHost(),$this->getUsername(),$this->getPassword(),$this->getDbname());
 
                 //prepare statment
                 $pstmt = $con->prepare($sql);
@@ -57,7 +55,7 @@
             try{
                 
                 //establish connection
-                $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
+                $con = new mysqli($this->getHost(),$this->getUsername(),$this->getPassword(),$this->getDbname());
 
                 //prepare statment
                 $pstmt = $con->prepare($sql);
@@ -100,7 +98,7 @@
             try{
                 
                 //establish connection
-                $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
+                $con = new mysqli($this->getHost(),$this->getUsername(),$this->getPassword(),$this->getDbname());
 
                 //prepare statement
                 $pstmt = $con->prepare($sql);
@@ -124,7 +122,7 @@
 
             try{
                 //establish connection
-                $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
+                $con = new mysqli($this->getHost(),$this->getUsername(),$this->getPassword(),$this->getDbname());
                 //prepare statement
                 $pstmt = $con->prepare($sql);
                 $pstmt->bind_param("i", $custOrderDetailID); 
@@ -144,7 +142,7 @@
             $sql = "UPDATE custom_Order_details  SET ItemID =?,OrderDescription =?,OrderID =? WHERE CustOrderDetailID =?";
             try{
                 //establish connection
-                $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
+                $con = new mysqli($this->getHost(),$this->getUsername(),$this->getPassword(),$this->getDbname());
                 
                 //prepare statement
                 $pstmt = $con->prepare($sql);
@@ -173,7 +171,7 @@
 
             try{
                 //establish connection
-                $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
+                $con = new mysqli($this->getHost(),$this->getUsername(),$this->getPassword(),$this->getDbname());
                 
                 //prepare statement
                 $pstmt = $con->prepare($sql);

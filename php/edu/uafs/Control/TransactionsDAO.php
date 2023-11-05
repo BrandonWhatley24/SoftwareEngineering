@@ -1,9 +1,7 @@
 <?php
-
-    class TransactionsDAO{
-        private $user="root";
-        private $password ="Garmon22";
-        public function getAllTransactions(){
+require("Creds.php"); 
+    class TransactionsDAO extends Creds{
+              public function getAllTransactions(){
             
             ini_set('display_errors', 1);
             ini_set('display_startup_errors', 1);
@@ -17,7 +15,7 @@
             try{
 
                 //establish connections
-                $con = new mysqli("localhost", $this->user, $this->password, "Testing");
+                $con = new mysqli($this->getHost(),$this->getUsername(),$this->getPassword(),$this->getDbname());
                 if ($con->connect_error) {
                     die("Connection failed: " . $con->connect_error);
                     
@@ -66,7 +64,7 @@
 
             try{
                 //establish connection
-                $con = new mysqli("localhost", $this->user, $this->password, "Testing");
+                $con = new mysqli($this->getHost(),$this->getUsername(),$this->getPassword(),$this->getDbname());
                 if ($con->connect_error) {
                     die("Connection failed: " . $con->connect_error);
                     
@@ -97,7 +95,7 @@
             
             try{
                  //establish connection
-                 $con = new mysqli("localhost", $this->user, $this->password, "Testing");
+                 $con = new mysqli($this->getHost(),$this->getUsername(),$this->getPassword(),$this->getDbname());
                  if ($con->connect_error) {
                      die("Connection failed: " . $con->connect_error);
                      
@@ -132,7 +130,7 @@
             try{
 
                  //establish connection
-                 $con = new mysqli("localhost", $this->user, $this->password, "Testing");
+                 $con = new mysqli($this->getHost(),$this->getUsername(),$this->getPassword(),$this->getDbname());
                  if ($con->connect_error) {
                      die("Connection failed: " . $con->connect_error);
                      
@@ -166,7 +164,7 @@
             try{
                 
                 //establish connection
-                $con = new mysqli("localhost", $this->user,$this->password,"Testing");
+                $con = new mysqli($this->getHost(),$this->getUsername(),$this->getPassword(),$this->getDbname());
                 // prepare statement
                 $pstmt = $con->prepare($sql);
                 $pstmt->bind_param("ss",$beginDate,$endDate);

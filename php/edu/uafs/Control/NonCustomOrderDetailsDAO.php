@@ -1,10 +1,8 @@
 <?php
+require("Creds.php"); 
+    class NonCustomOrderDetailsDAO extends Creds{
 
-    class NonCustomOrderDetailsDAO{
-
-        private $userName = "root";
-        private $password ="Garmon22"; 
-        private $db = "test"; 
+     
 
 
 
@@ -20,7 +18,7 @@
                 error_reporting(E_ALL); 
               
                 //establish connections
-                $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
+                $con = new mysqli($this->getHost(),$this->getUsername(),$this->getPassword(),$this->getDbname());
 
                 //prepare statement
                 $pstmt = $con->prepare($sql);
@@ -65,7 +63,7 @@
 
             try{
                 //establish connection
-                $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
+                $con = new mysqli($this->getHost(),$this->getUsername(),$this->getPassword(),$this->getDbname());
                 
                 //prepare statement
                 $pstmt = $con->prepare($sql);
@@ -110,7 +108,7 @@
                 ini_set('display_startup_errors', 1);
                 error_reporting(E_ALL); 
                 //establish connection
-                $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
+                $con = new mysqli($this->getHost(),$this->getUsername(),$this->getPassword(),$this->getDbname());
 
                 // prepare statement
                 $pstmt = $con->prepare($sql);
@@ -139,7 +137,7 @@
                 ini_set('display_startup_errors', 1);
                 error_reporting(E_ALL); 
                 //establish connection
-                $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
+                $con = new mysqli($this->getHost(),$this->getUsername(),$this->getPassword(),$this->getDbname());
 
                 //prepare statement
                 $pstmt = $con->prepare($sql);

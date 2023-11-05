@@ -10,7 +10,7 @@ Class:      CS 4003 - Software Engineering
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="HomeFrontFunctions.js"></script>
+    <script src="./HomeFrontFunctions.js"></script>
     <link rel="stylesheet" href="./css/HomeFrontStyle.css">
     <link rel="stylesheet" href="./css/bootstrap.css">
     <title>Buy Item Page</title>
@@ -32,7 +32,7 @@ Class:      CS 4003 - Software Engineering
                 <ul class="navbar-nav">
                   <li class="nav-item active">
                     <div class="font">
-                      <a class="nav-link" href="HomeFront.php" style="color: white;">Home<span class="sr-only">(current)</span></a>
+                      <a class="nav-link" href="./HomeFront.php" style="color: white;">Home<span class="sr-only">(current)</span></a>
                     </div>
                     </li>
                   <!-- Commented out About us, Services, & searchbar from the navbar
@@ -63,7 +63,7 @@ Class:      CS 4003 - Software Engineering
                             <button class="dropbtn">Profile</button>
                             <div class="dropdown-content">
                               <a href="./orders.php">Order History</a>
-                              <a href="./login.html">Logout</a>
+                              <a href="./login.php">Logout</a>
                             </div>
                           </div>
                     </li>
@@ -72,7 +72,7 @@ Class:      CS 4003 - Software Engineering
                       <a class="nav-link headerFont" href="checkout.html" style="color:white;">Checkout</a>
                     </li>
                     <li class="nav-item h">
-                      <a class="nav-link headerFont" href="login.html" style="color:white;">Logout</a>
+                      <a class="nav-link headerFont" href="login.php" style="color:white;">Logout</a>
                     </li>
                   </ul>
                 </div>

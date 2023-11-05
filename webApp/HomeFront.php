@@ -12,7 +12,7 @@ Class:      CS 4003 - Software Engineering
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!--<script src="scripts/bootstrap.js"></script> -->
-  <script src="HomeFrontFunctions.js"></script>
+  <script src="./HomeFrontFunctions.js"></script>
   <link rel="stylesheet" href="./css/HomeFrontStyle.css">
   <link rel="stylesheet" href="./css/bootstrap.css">
   <title>Timeless Borders Main Page</title>
@@ -47,13 +47,13 @@ Class:      CS 4003 - Software Engineering
           <form action="scripts/file.php" method="POST">
               <div class="collapse navbar-collapse headerFont" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <img src="images/profileIcon.jpg" width="50" height="40">
+                  <img src="./images/profileIcon.jpg" width="50" height="40">
                   <li class="nav-item h">
                     <div class="dropdown">
                       <button class="dropbtn">Profile</button>
                       <div class="dropdown-content">
                         <a href="./orders.php">Order History</a>
-                        <a href="./login.html">Logout</a>
+                        <a href="./logout.php">Logout</a>
                       </div>
                     </div>
                   </li>

@@ -1,5 +1,5 @@
 <?php
-
+require("Creds.php"); 
 class Orders implements JsonSerializable{
     private $orderID;
     private $status;
@@ -80,10 +80,7 @@ class Orders implements JsonSerializable{
 
 }
 
-class OrdersDAO {
-    private $userName = "root";
-    private $password ="Garmon22"; 
-    private $db = "test";
+class OrdersDAO extends Creds{
   
 
    
@@ -103,7 +100,7 @@ class OrdersDAO {
             ini_set('display_startup_errors', 1);
             error_reporting(E_ALL); 
             
-            $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
+            $con = new mysqli($this->getHost(),$this->getUsername(),$this->getPassword(),$this->getDbname());
             
                 if ($con->connect_error) {
                     die("Connection failed: " . $con->connect_error);
@@ -147,7 +144,7 @@ class OrdersDAO {
 
         try{
             //establish connection
-            $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
+            $con = new mysqli($this->getHost(),$this->getUsername(),$this->getPassword(),$this->getDbname());
 
             //prepare statement
 
@@ -178,7 +175,7 @@ class OrdersDAO {
 
         try{    
             //establish a connection
-            $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
+            $con = new mysqli($this->getHost(),$this->getUsername(),$this->getPassword(),$this->getDbname());
 
             //prepare statement
             $pstmt = $con->prepare($sql);
@@ -203,7 +200,7 @@ class OrdersDAO {
 
         try{
             //establish connection
-            $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
+            $con = new mysqli($this->getHost(),$this->getUsername(),$this->getPassword(),$this->getDbname());
 
             //prepare statement
             $pstmt = $con->prepare($sql);
@@ -233,7 +230,7 @@ class OrdersDAO {
         $orders = array(); 
         try{
             //establish connection
-            $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
+            $con = new mysqli($this->getHost(),$this->getUsername(),$this->getPassword(),$this->getDbname());
             //prepare statement
             $pstmt = $con->prepare($sql);
             $pstmt->bind_param("i",$custID);
@@ -285,7 +282,7 @@ class OrdersDAO {
         try{
 
             //establish connection
-            $con = new mysqli("localhost",$this->userName,$this->password,$this->db);
+            $con = new mysqli($this->getHost(),$this->getUsername(),$this->getPassword(),$this->getDbname());
              //prepare statement
              $pstmt = $con->prepare($sql);
              $pstmt->bind_param("i",$orderID);
