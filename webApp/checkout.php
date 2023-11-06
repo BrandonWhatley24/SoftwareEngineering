@@ -11,64 +11,23 @@
     <title>checkout</title>
 </head>
 <body>
+
+
+
 <?php
-error_reporting(E_ALL); 
-ini_set('display_errors', '1');
+
 session_start();
-//var_dump($_POST);
-//var_dump($_SERVER);
-require("../php/edu/uafs/Control/itemsDAO.php");
 
-$cart = [];
-?>
-<script>
-    localStorage.setItem('cart', "<?php echo json_encode($_SESSION['cart']); ?>");
-</script>
+$cart = $_SESSION["cart"]; 
 
-
-
-<?php
-var_dump($_SESSION);
-
-if (isset($_POST)) {
-    echo "im here"; 
-    // Retrieve the JSON string from the hidden input field
-    $cartJSON = file_get_contents("php://input");
-    
-    // Decode the JSON string into a PHP array
-    $cartArray = json_decode($cartJSON, true);
-    echo "before";
-    print_r($cartArray); // Use print_r to display the contents of the array
-
-   
-   
-    if ($cartArray !== null) {
-      // Now, $cartArray contains your cart data as a PHP array of objects
-      // You can loop through it and process the items
-     
-      for($i =0; $i < count($cartArray);$i++){
-        $item = new item(0,$cartArray[$i]["price"],$cartArray[$i]["name"],12,12); 
-        $cart[]= $item;
-      }  
-    } else {
-      // Handle the case where JSON couldn't be decoded
-      echo "Failed to decode JSON data.";
-    }
-  }
-  
-  
-    
-    echo "printing out cart"; 
-    for ($i = 0; $i < count($cart);$i++){
-        echo $cart[$i]->getitemName();
-        echo $cart[$i]->getitemPrice();
-    }
 
 ?>
+
+
     <header>
     <nav class="navbar" data-bs-theme="dark">
                 
-                <h2 style="color: white; font-family: Times New Roman;"><a id="logoLink" href="./HomeFront.php">Timeless Borders</a></h2>
+                <h2 style="color: white; font-family: Times New Roman;"><a id="logoLink" href="./homepage.php">Timeless Borders</a></h2>
                 <form class="form-inline my-2 my-lg-0" style="margin-left: 5%;">
                     <div class="container ">
                         <div class="row">
@@ -87,13 +46,13 @@ if (isset($_POST)) {
                 <ul class="nav" >
                     
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#" style="color: white;">
+                        <a class="nav-link" aria-current="page" href="./orders.php" style="color: white;">
                             <i class="bi bi-card-list"></i>
                         </a>
 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./checkout.php">
+                        <a class="nav-link active" aria-current="page"  href="./checkout.php">
                             <i class="bi bi-cart-check"></i>
                         </a>
                     </li>
@@ -167,7 +126,7 @@ if (isset($_POST)) {
             
                     <div class="container " style="padding: 8% 15% 5% 0%;">
                     <h2 style="font-family: 'Times New Roman', Times, serif;">Order Summary</h2>
-                                <form action=""  style="padding:0% 5% 20% 5%; border-style: groove; border-color: white; border-width: thick; border-radius:3%">     
+                                <form action="./orderProc.php"  style="padding:0% 5% 20% 5%; border-style: groove; border-color: white; border-width: thick; border-radius:3%">     
                                
                                         <table class="table " >
                                         
@@ -182,19 +141,31 @@ if (isset($_POST)) {
                                                 <tbody>
 
                                                 <?php 
+
+                                                require('../php/edu/uafs/Control/itemsDAO.php'); // Include your DAO class
+                                               $cart = $_SESSION["cart"]; 
+                                                
+                                              
+                                               // ids 
+                                                $itemDAO = new ItemDAO();
+                                                
                                                 $total = 0;
+                                                
                                                 $i = 0;
                                                 //displays the checkout summary box
                                                 while ($i < count($cart)) {
+                                                    
+                                                    $item = $itemDAO->getItemByID(intval($cart[$i]));
+                                                   
                                                     ?>
                                                     <tr>
-                                                            <th scope="row"><?php echo $cart[$i]->getId();?></th>
+                                                            <th scope="row"><?php echo $cart[$i];?></th>
                                                             <!--need to map images to our set of items-->
                                                             <td><img src="images/wf1.jpeg" alt="pic" width="40" height="40"></td>
-                                                            <th scope="row"><?php echo $cart[$i]->getitemPrice()?></th>
+                                                            <th scope="row"><?php echo $item->getitemPrice()?></th>
                                                     </tr>
                                                 <?php
-                                                $total+= $cart[$i]->getitemPrice();
+                                                $total+= $item->getitemPrice();
                                                 $i++;
                                                 } 
                                                 ?>
@@ -206,7 +177,8 @@ if (isset($_POST)) {
                                                     
                                                 </tbody>
                                         </table>
-                                        <button type="button" class="btn btn-primary" style="float:right; border-radius: 30px 30px 30px 30px;">checkout</button>
+                                        <input type="hidden" name="total" value="<?php echo $total?>">
+                                        <button type="submit" class="btn btn-primary" style="float:right; border-radius: 30px 30px 30px 30px;">checkout</button>
 
                                     </form>   
                     </div>

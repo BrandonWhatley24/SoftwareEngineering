@@ -74,7 +74,7 @@ class ItemDAO extends Creds {
         $con = new mysqli($this->getHost(),$this->getUsername(),$this->getPassword(),$this->getDbname());
         $pstmt = $con->prepare($sql);
       
-        $pstmt = $con->prepare($sql);
+       
                
         $pstmt->execute();
         $result = $pstmt->get_result();
@@ -95,6 +95,35 @@ class ItemDAO extends Creds {
         return $allItems;
     
 
+    }
+
+    public function getItemByID($id) {
+
+        $Items = null;
+        $sql = "SELECT * FROM items WHERE itemID = ?";
+        $con = new mysqli($this->getHost(),$this->getUsername(),$this->getPassword(),$this->getDbname());
+        $pstmt = $con->prepare($sql);
+      
+        
+        $pstmt->bind_param("i", $id);
+        $pstmt->execute();
+        
+        $result = $pstmt->get_result();
+
+        if ($result != null) {
+            $i = 0;
+            while ($row = $result->fetch_assoc()) {
+                $csItem = new Item($row["itemID"],$row["itemprice"],$row["itemname"],$row["itemLength"],$row["itemWidth"]);
+                
+                $allItems[$i] = $csItem;
+               
+                $i++; 
+                //$id, $itemPrice, $itemName, $itemLength,$itemWidth
+            }
+        }
+
+        $con->close();
+        return $allItems[0];
     }
 
   

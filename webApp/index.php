@@ -14,7 +14,7 @@
             <header>Login</header>
 
             <!--The code below is the form to allow users to log into their account-->
-            <form action="" method="post">
+            <form action="auth.php" method="POST">
 
                 <div class="field input">
                     <label for="username">Username</label>
@@ -23,7 +23,7 @@
 
                 <div class="field input">
                     <label for="password">Password</label>
-                    <input type="password" name="password" id="password" value="********" required>
+                    <input type="password" name="password" id="password"  required>
                 </div>
 
                 <div class="field">

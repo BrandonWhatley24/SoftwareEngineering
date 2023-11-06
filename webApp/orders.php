@@ -22,7 +22,7 @@
             
         <nav class="navbar" data-bs-theme="dark">
                 
-                <h2 style="color: white; font-family: anton;"><a id="logoLink" href="./HomeFront.php">TB Borders</a></h2>
+                <h2 style="color: white; font-family: anton;"><a id="logoLink" href="./homepage.php">TB Borders</a></h2>
                 
                 <!--seach bar for orders. This will rederict to An order details page -->
                 <form class="form-inline my-2 my-lg-0" style="margin-left: 5%;" action="./orderDetail.php" method="GET">
@@ -48,7 +48,7 @@
 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./orders.php">
+                        <a class="nav-link" href="./checkout.php">
                             <i class="bi bi-cart-check"></i>
                         </a>
                     </li>
