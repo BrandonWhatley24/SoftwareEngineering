@@ -69,10 +69,10 @@ Class:      CS 4003 - Software Engineering
                     </li>
                     <img src="images/cart.jpg" width="50" height="40" href="#">
                     <li class="nav-item h">
-                      <a class="nav-link headerFont" href="checkout.html" style="color:white;">Checkout</a>
+                      <a class="nav-link headerFont" onclick="sendCartToCheckout()" href="./checkout.php" style="color:white;">Checkout</a>
                     </li>
                     <li class="nav-item h">
-                      <a class="nav-link headerFont" href="login.php" style="color:white;">Logout</a>
+                      <a class="nav-link headerFont" href="./login.php" style="color:white;">Logout</a>
                     </li>
                   </ul>
                 </div>
@@ -107,7 +107,7 @@ Class:      CS 4003 - Software Engineering
         <!--Start of form action-->
         <!--<form action="scripts/file.php" method="POST">-->
         
-          <div id="itemInformation"></div>
+          <div id="itemInformation" style="margin-top="10px"></div>
         <!-- </form> -->
     </body>
     <footer>

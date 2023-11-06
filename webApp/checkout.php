@@ -22,18 +22,26 @@ require("../php/edu/uafs/Control/itemsDAO.php");
 $cart = [];
 ?>
 <script>
-    localStorage.setItem('cart', "<?php echo $_SESSION['cart'];?>");
+    localStorage.setItem('cart', "<?php echo json_encode($_SESSION['cart']); ?>");
 </script>
 
+
+
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+var_dump($_SESSION);
+
+if (isset($_POST)) {
     echo "im here"; 
     // Retrieve the JSON string from the hidden input field
-    $cartJSON = $_POST['cartData'];
+    $cartJSON = file_get_contents("php://input");
     
     // Decode the JSON string into a PHP array
-    $cartArray = json_decode($cartJSON,true);
-  
+    $cartArray = json_decode($cartJSON, true);
+    echo "before";
+    print_r($cartArray); // Use print_r to display the contents of the array
+
+   
+   
     if ($cartArray !== null) {
       // Now, $cartArray contains your cart data as a PHP array of objects
       // You can loop through it and process the items
@@ -60,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <header>
     <nav class="navbar" data-bs-theme="dark">
                 
-                <h2 style="color: white; font-family: Times New Roman;"><a id="logoLink" href="./HomeFront.php">TB Borders</a></h2>
+                <h2 style="color: white; font-family: Times New Roman;"><a id="logoLink" href="./HomeFront.php">Timeless Borders</a></h2>
                 <form class="form-inline my-2 my-lg-0" style="margin-left: 5%;">
                     <div class="container ">
                         <div class="row">

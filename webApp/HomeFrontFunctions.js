@@ -19,7 +19,7 @@ async function HomeFrontPageStartUp() {
         let tableHTML = '';
 
         for (let i = 0; i < items.length; i++) {
-            if (i >= 0) {
+            if (i === 0) {
                     tableHTML +=    `<div class="row">
                     <div class="col-md-3">
                         <div class="card">
@@ -38,18 +38,12 @@ async function HomeFrontPageStartUp() {
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="card">
-                                            <div class="imageScale">`;
-                                            if(items[i].image === './images/redFrame.jpg'){
-                                                tableHTML += `<img src="./images/redFrame.jpg" width="250" height="300" alt="Product ${i}">`;
-                                            }else{
-                                                tableHTML += `<img  src="./images/redFrame.jpg" class="card-img-top" alt="Product ${i}">`;
-                                            }
-
-                tableHTML +=                                
-                                            `</div> 
+                                            <div class="imageScale">
+                                                <img  src="./images/goldFrame.jpg" class="card-img-top" alt="Product ${i}">
+		    			    </div> 
                                             <div class="card-body">
-                                                <h5 class="card-title">${items[i].title}</h5>
-                                                <p class="card-text">${items[i].text} </p>
+                                                <h5 class="card-title">${items[i].itemName}</h5>
+                                                <p class="card-text">${items[i].itemPrice} </p>
                                                 <button type="submit" id="buyButton${i}" name="buyButton${i}" onclick="routeToBuyItemPage(${i})">Add to cart</button>
                                             </div>
                                         </div>
@@ -57,18 +51,12 @@ async function HomeFrontPageStartUp() {
             } else {
                 tableHTML +=        `<div class="col-md-3">
                                         <div class="card">
-                                            <div class="imageScale">`;
-                                            if(items[i].image === 'images/redFrame.jpg'){
-                                                tableHTML += `<img src="${items[i].image}" width="250" height="300" alt="Product ${i}">`;
-                                            }else{
-                                                tableHTML += `<img  src="${items[i].image}" class="card-img-top" alt="Product ${i}">`;
-                                            }
-
-                tableHTML +=                                
-                                            `</div> 
+                                            <div class="imageScale">
+                                                <img  src="./images/goldFrame.jpg" class="card-img-top" alt="Product ${i}">
+					    </div> 
                                             <div class="card-body">
-                                                <h5 class="card-title">${items[i].title}</h5>
-                                                <p class="card-text">${items[i].text} </p>
+                                                <h5 class="card-title">${items[i].itemName}</h5>
+                                                <p class="card-text">${items[i].itemPrice} </p>
                                                 <button type="submit" id="buyButton${i}" name="buyButton${i}" onclick="routeToBuyItemPage(${i})">Add to cart</button>
                                             </div>
                                         </div>
@@ -100,16 +88,13 @@ function routeToBuyItemPage(index){
     let colors = getColors();
 
     html +=     `<div class="imageScale2">
-                    <img src="${item.image}" class="card-img-top" alt="Product 2" height="350">
+                    <img src="./images/goldFrame.jpg" class="card-img-top" alt="Product 2" height="350">
                 </div>
                 <div class="itemDesc">
                     <h3>Description</h3> <br>
-                    <p>${item.text} </p>
                     <p>Default measurement: ${defaultLength}x${defaultWidth}</p>
-                    <p>Default color: ${item.color}</p>
-                    <p>Default material: ${item.material}</p>
                 </div>
-                <div class="itemBodyContainer">
+                <div class="itemBodyContainer" style="margin-top=10px">
                     <div class="itemBodyHeader">
                         <h2>Picture Frame</h2>
                         <br>
@@ -186,6 +171,10 @@ function routeToBuyItemPage(index){
 
 }
 
+function sendCartToCheckout(){
+
+}
+
 //Function is called to insert the html into the div with the class of itemIndormation on the buy item page
 function getBuyPageHTML(){
     let html = localStorage["html"]
@@ -202,15 +191,17 @@ function getBuyPageHTML(){
 function addItemToCart(){
     calculateTotal();
 
-    let cart = JSON.parse(localStorage["cart"]);
-    let item = currItem;
+    let cart = [];
+
+    if(localStorage["cart"] !== undefined && localStorage["cart"] !== ""){
+        cart = JSON.parse(localStorage["cart"]);
+    }
+
+    let item = currOrder;
 
     cart.push(item);
 
     localStorage["cart"] = JSON.stringify(cart);
-
-
-    //Add the operation to be able to add the item to the cart
 }
 
 /*****************************/
