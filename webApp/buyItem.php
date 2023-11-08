@@ -17,9 +17,9 @@ if($username == null){
 ?>
 <?php
  require("../php/edu/uafs/Control/itemsDAO.php");
- $allItems = new ItemDAO();
- $allItems = $allItems->getAllItems();  
-
+ $itemDAO = new ItemDAO();
+ $myItem = $itemDAO->getItemByID($_GET["item"]); 
+ $images = $_SESSION["images"];
 
 
 $cart = []; 
@@ -114,71 +114,63 @@ if (isset($_SESSION["cart"])) {
           </nav>
          
     </header>
-    <div class="section">
-        <div style="float: right; margin-right:2%;">
-            <input type="text" id="myInput" style="width: 80px; height: 16px; background-color: red; color: white;" value="<?php echo count($cart)?>"readonly>
+            <main>
 
-                <a href="./emptyCart.php" >clear cart</a>
-        </div>
-			<!-- container -->
-			<div class="container">
-					
-					<!-- STORE -->
-					<div id="store" class="col-md-9" style="margin-left: 15%;">
-					
+                        <div class="container-fluid" style="margin-top: 5%;">
+                                <div class="row">
 
-						<!-- store products -->
-						<div class="row">
-							<!-- product -->
+                                    <div class="col-6">
+                                                <div class="container-sm" style="padding: 5% 0% 5% 15%; ">
+                                                    <img src="<?php echo $images[$myItem->getId().""]?>" width=400 height=400 alt="image">
+                                                </div>
+                                    </div>
+                                    
+                                    <div class="col-6">
 
-                            <?php
-                                for ($i = 0; $i < count($allItems); $i++){
-                                    $item = $allItems[$i];
-                            ?>
+                                    <h3 style=" font-family: Times New Roman;"><?php echo $myItem->getitemName()?></h3>
+                                    <p style="font-family: Times New Roman;">A high-quality wood frame is a testament to both craftsmanship and timeless elegance. <br> 
+                                        Crafted from carefully selected hardwoods, such as oak, walnut, or maple, these frames <br>showcase the natural beauty of the wood's grain,
+                                        providing a warm and inviting aesthetic. <br>Their durability and sturdiness ensure that your cherished artwork or photographs are not only<br> 
+                                         beautifully showcased but also 
+                                        protected for generations to come. Whether it's the rich tones of <br>mahogany  or the subtle elegance of cherry, 
+                                        a quality wood frame adds a touch of sophistication <br>and a 
+                                        lasting touch of nature to any piece of art or cherished memory.</p>
+                                    
 
-                                <!-- /product -->
+                                            <div class="container " style="padding: 8% 15% 5% 0%; ">
+                                                <form  action="./cart.php" method="POST">
+                                            <div class="row">
+                                                        <div class="form-group col-md-2">
+                                                        <label for="inputZip">Length:</label>
+                                                        <input type="number" class="form-control" id="inputZip" name="length" required>
+                                                        </div>
+                                                        <div class="form-group col-md-2">
+                                                        <label for="inputZip">Width:</label>
+                                                        <input type="number" class="form-control" id="inputZip" name="width" required>
+                                                        </div>
+                                                        <div class="form-group col-md-2">
+                                                        <label for="inputZip">Qty:</label>
+                                                        <input type="number" class="form-control" id="inputZip" name="qty" required>
+                                                        </div>
+                                                        <input type="hidden" name="itemID" value="<?php echo $myItem->getID()?>">
+                                                </div>
+                                                <div style="margin-top: 5%;">
+                                                    <button type="submit" class="btn btn-primary mb-2">ADD TO CART</button>
+                                                   
+                                                </div>
 
-							<!-- product -->
-							<div class="col-md-4 col-xs-6">
-								<div class="product">
-									<div class="product-img">
-                                        <?php if($item->getId() == 1){?>
-                                            <img src="<?php echo $images[$item->getId().""];?>"  height="250" alt="frame Image"  >
-                                        <?php }else{?>
-										    <img src="<?php echo $images[$item->getId().""];?>" alt="frame Image"  >
-                                        <?php } ?>    
-									</div>
-									<div class="product-body">
-									
-										<h3 class="product-name"><?php echo $item->getitemName()?></h3>
-										
-										<h3 class="product-name">Length :<?php echo $item->getitemLength() . "  Width: ". $item->getitemWidth()?></h3>
-									
-										<h4 class="product-price">Price: <?php echo $item->getitemPrice()?></h4>
-									
-										
-									</div>
-									<div class="add-to-cart">
-										<form action="./buyItem.php" method="get">
-											<input type="hidden" name="item" value="<?php echo $item->getId()?>">
-											
-											<button  type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart" ></i> add to cart</button>
-										</form>
-									</div>
-								</div>
-							</div>
-                                
-                               <?php 
-                                }
-
-                            ?>
-							
+                                                </form>
+                                                <a href="./homepage.php">
+                                                        <button class="btn btn-primary mb-2">CANCEL</button>
+                                                    </a>
+                                            </div>
+                                        
+                                    </div>
 
                             </div>
-                            </div>
-		
+                        </div>
+            </main>
 
-       
              <footer class="footer">
                         <div class="footcontainer">
                             <div class="footer">Limitless Borders Inc.&copy;2023 &ensp; Powered by our AI Overlords.</div>

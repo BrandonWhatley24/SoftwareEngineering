@@ -1,3 +1,20 @@
+<?php
+ session_start();
+ header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+ header("Pragma: no-cache");
+ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+ $username = $_SESSION["username"];
+ 
+ if($username != null){
+   
+      // Unset specific session data
+      unset($_SESSION['username']);
+     
+      // Redirect to the login page
+      header("Location: ./logout.php"); 
+ } 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +31,7 @@
             <header>Login</header>
 
             <!--The code below is the form to allow users to log into their account-->
-            <form action="auth.php" method="POST">
+            <form action="./auth.php" method="POST">
 
                 <div class="field input">
                     <label for="username">Username</label>
@@ -27,11 +44,11 @@
                 </div>
 
                 <div class="field">
-                    <input type="submit" class="btn" name="submit" value="Login" required>
+                    <button type="submit" class="btn" name="submit">Login</button>
                 </div>
                 
                 <div class="links">
-                    Don't have an account? <a href="NewUser.html">Create an Account</a>
+                    Don't have an account? <a href="./NewUser.php">Create an Account</a>
                 </div>
 
     

@@ -9,7 +9,8 @@
     session_start();
     
     // Unset specific session data
-    unset($_SESSION['userName']);
+    unset($_SESSION['username']);
+    session_destroy(); 
     
     // Redirect to the login page
     header("Location: ./index.php"); 

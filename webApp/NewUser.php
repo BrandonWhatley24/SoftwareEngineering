@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +15,7 @@
             <header>New User</header>
 
             <!--The code below is the form to allow users to create their account-->
-            <form action="" method="post">
+            <form action="./registration.php" method="POST">
 
                 <div class="field input">
                     <label for="Fname">First Name</label>
@@ -32,7 +34,7 @@
 
                 <div class="field input">
                     <label for="password">Password</label>
-                    <input type="text" name="password" id="password" value="********" required>
+                    <input type="password" name="password" id="password"  required>
                 </div>
 
                 <div class="field input">
@@ -45,7 +47,7 @@
                 </div>
                 
                 <div class="links">
-                    Have an account? <a href="Login.html">Login</a>
+                    Have an account? <a href="index.php">Login</a>
                 </div>
 
     

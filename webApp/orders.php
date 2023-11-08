@@ -1,5 +1,18 @@
 <?php 
-    session_start(); 
+session_start();
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Pragma: no-cache");
+header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+$username = $_SESSION["username"];
+$images = $_SESSION["images"]; 
+if($username == null){
+  
+     // Unset specific session data
+     unset($_SESSION['username']);
+    
+     // Redirect to the login page
+     header("Location: ./logout.php"); 
+} 
 ?>
 <!DOCTYPE html>
 <html lang="en">

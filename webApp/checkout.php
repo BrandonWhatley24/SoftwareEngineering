@@ -1,4 +1,19 @@
-
+<?php 
+session_start();
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Pragma: no-cache");
+header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+$username = $_SESSION["username"];
+$images = $_SESSION["images"]; 
+if($username == null){
+  
+     // Unset specific session data
+     unset($_SESSION['username']);
+    
+     // Redirect to the login page
+     header("Location: ./logout.php"); 
+} 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -161,7 +176,7 @@ $cart = $_SESSION["cart"];
                                                     <tr>
                                                             <th scope="row"><?php echo $cart[$i];?></th>
                                                             <!--need to map images to our set of items-->
-                                                            <td><img src="images/wf1.jpeg" alt="pic" width="40" height="40"></td>
+                                                            <td><img src="<?php echo $images[$item->getId().""]?>" alt="pic" width="40" height="40"></td>
                                                             <th scope="row"><?php echo $item->getitemPrice()?></th>
                                                     </tr>
                                                 <?php

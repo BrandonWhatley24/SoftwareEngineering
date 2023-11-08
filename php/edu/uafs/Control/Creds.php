@@ -1,8 +1,9 @@
    <?php 
     class Creds{
+
     private static $host = "localhost";
-    private static $username = "root";
-    private static $password = "Garmon22";
+    private static $username = "admin";
+    private static $password = "Password1";
     
     private static $dbname = "test";
      
